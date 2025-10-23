@@ -168,6 +168,7 @@ footer {
 .social-buttons button {
   border: none;
   background: transparent;
+  cursor: pointer;
 }
 
 .social-buttons button svg {

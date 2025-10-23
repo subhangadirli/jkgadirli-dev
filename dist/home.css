@@ -64,19 +64,18 @@ body {
 
 header {
   display: flex;
+  flex-direction: row;
   width: 100%;
   justify-content: space-between;
   align-items: center;
   margin: 0;
-  max-height: 10rem;
+  padding: 0;
+  padding-top: 1.2rem;
+  padding-bottom: 1.2rem;
 }
 
-nav,
 ul {
   display: flex;
-}
-
-ul {
   list-style: none;
   gap: 3rem;
   align-items: center;
@@ -85,6 +84,7 @@ ul {
 }
 
 nav {
+  display: flex;
   padding-right: 10%;
 }
 
@@ -92,7 +92,9 @@ nav {
   padding-left: 10%;
   font-family: "DM Serif Display", serif;
   font-size: 5rem;
+  margin: 0;
 }
+
 nav a {
   text-decoration: none;
   font-family: "Roboto", sans-serif;
@@ -205,5 +207,9 @@ footer p {
   main {
     padding-left: 2rem;
     padding-right: 2rem;
+  }
+
+  footer p {
+    font-size: 1.05rem;
   }
 }

@@ -12,6 +12,16 @@ body {
   font-family: "Poppins";
 }
 
+::selection {
+  color: #ffffff;       /* Seçilən mətn ağ rəngdə */
+  background: #4a90e2;  /* Arxa fon ChatGPT-nin yaşıl rəngi */
+}
+
+::-moz-selection {
+  color: #ffffff;       
+  background: #4a90e2;
+}
+
 @font-face {
   font-family: "Poppins";
   src: url("./fonts/Poppins-Regular.ttf") format("truetype");

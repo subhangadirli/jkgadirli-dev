@@ -388,6 +388,11 @@ footer p {
     flex-direction: column;
     width: 100%;
   }
+
+  .left{
+    display: flex;
+    flex-direction: row;
+  }
   .right nav {
     width: 100%;
     display: flex;
@@ -397,5 +402,8 @@ footer p {
 
   .main-intro h1 {
     padding-top: 0.2rem;
+  }
+  .main-intro h1 .text{
+    text-align: left;
   }
 }

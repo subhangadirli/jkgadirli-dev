@@ -374,6 +374,7 @@ footer p {
 
   .right {
     margin-top: 1rem;
+    gap: 0.7rem;
   }
 
   .form-row {
@@ -392,5 +393,9 @@ footer p {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+  }
+
+  .main-intro h1 {
+    padding-top: 0.2rem;
   }
 }

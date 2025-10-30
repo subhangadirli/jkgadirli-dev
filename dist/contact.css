@@ -366,7 +366,7 @@ footer p {
 
 /* Responsive */
 
-@media (width<=6rem) {
+@media (width<=64rem) {
   .header-container {
     flex-direction: column;
     align-items: flex-start;

@@ -42,7 +42,13 @@
           <div class="form-row">
             <div class="form-group">
               <label for="name">Name</label>
-              <input type="text" placeholder="Your Name" id="name" required />
+              <input
+                name="name"
+                type="text"
+                placeholder="Your Name"
+                id="name"
+                required
+              />
             </div>
             <div class="form-group">
               <label for="email">Email</label>
@@ -67,6 +73,13 @@
               placeholder="Enter your message"
             ></textarea>
           </div>
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_subject" value="New submission!" />
+          <input
+            type="hidden"
+            name="_next"
+            value="https://jkgadirli.dev/thanks.html"
+          />
 
           <button type="submit">Send</button>
         </form>

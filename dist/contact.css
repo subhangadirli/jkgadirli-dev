@@ -409,10 +409,17 @@ footer p {
     justify-content: space-around;
   }
 
+  main {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
   .main-intro h1 {
     padding-top: 0.2rem;
   }
-  .main-intro h1 .text{
-    text-align: left;
+  .main-intro p{
+    text-align: justify;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }

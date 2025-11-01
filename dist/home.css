@@ -13,12 +13,12 @@ body {
 }
 
 ::selection {
-  color: #ffffff;       /* Seçilən mətn ağ rəngdə */
-  background: #4a90e2;  /* Arxa fon ChatGPT-nin yaşıl rəngi */
+  color: #ffffff; /* Seçilən mətn ağ rəngdə */
+  background: #4a90e2; /* Arxa fon ChatGPT-nin yaşıl rəngi */
 }
 
 ::-moz-selection {
-  color: #ffffff;       
+  color: #ffffff;
   background: #4a90e2;
 }
 
@@ -119,7 +119,11 @@ nav a {
 }
 
 nav a:hover {
-  text-decoration: underline;
+  color: #007bff;
+}
+
+ul li a {
+  font-family: DM Serif Display, serif;
 }
 
 main {
@@ -128,6 +132,10 @@ main {
   align-items: center;
   justify-content: start;
   text-align: center;
+}
+
+main h1 {
+  font-family: "DM Serif Display", serif;
 }
 
 .hero {

@@ -212,6 +212,10 @@ nav a p {
     font-family: DM Serif Display, serif;
 }
 
+nav a:hover {
+  color: #4a90e2;
+}
+
 
 
 main {

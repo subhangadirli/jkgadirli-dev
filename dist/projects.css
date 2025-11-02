@@ -20,7 +20,7 @@ body {
   background: #4a90e2;
 }
 body {
-    margin: 0;
+  margin: 0;
   display: flex;
   flex-direction: column;
   min-height: 100vh; /* səhifə hündürlüyü qədər */
@@ -203,8 +203,11 @@ header {
   text-decoration: none;
   color: #666666;
   font-weight: 500;
-  margin-left: 1.5rem;
+
   transition: color 0.3s ease;
+}
+.right a:not(:first-of-type){
+  margin-left: 1.5rem;
 }
 .projects {
   color: #4a90e2;
@@ -504,7 +507,7 @@ footer p {
   }
 
   .right nav{
-    justustify-content: space-around;
+    justify-content: space-around;
   }
   nav a{
     margin-left: 0rem;

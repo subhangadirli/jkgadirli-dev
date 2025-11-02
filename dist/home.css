@@ -272,7 +272,18 @@ footer p {
     padding-right: 2rem;
   }
 
+  main h1 {
+    font-size: 2.5rem;
+    padding-bottom: 1.5rem;
+  }
+
   footer p {
     font-size: 1.05rem;
+  }
+
+  .land-buttons {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding-top: 2rem;
   }
 }

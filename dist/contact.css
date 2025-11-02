@@ -413,6 +413,18 @@ footer p {
     justify-content: space-around;
   }
 
+  .home{
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .resume-button {
+    margin-left: 0;
+    width: 100%;
+  }
+
+
+
   main {
     padding-left: 1rem;
     padding-right: 1rem;

@@ -1,6 +1,0 @@
-# robots.txt for https://jkgadirli.dev/
-
-User-agent: *
-Allow: /
-
-Sitemap: https://jkgadirli.dev/sitemap.xml

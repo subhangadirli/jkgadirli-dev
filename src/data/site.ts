@@ -118,29 +118,39 @@ export const projects: Project[] = [
   },
 ];
 
-/** ordered in groups: languages, frontend, runtimes, data, then infrastructure */
-export const skills = [
-  "TypeScript",
-  "JavaScript",
-  "Python",
-  "Ruby",
-  "Bash",
-  "React",
-  "Svelte",
-  "Astro",
-  "Tailwind CSS",
-  "Node.js",
-  "Deno",
-  "Bun",
-  "Hono",
-  "PostgreSQL",
-  "SQLite",
-  "Linux",
-  "Docker",
-  "Podman",
-  "Caddy",
-  "Hetzner",
-  "Git",
+export const skillGroups = [
+  {
+    label: "Languages",
+    items: ["TypeScript", "JavaScript", "Python", "Ruby", "Bash"],
+  },
+  {
+    label: "Frontend",
+    items: ["React", "Next.js", "Svelte", "Astro", "Tailwind CSS"],
+  },
+  {
+    label: "Backend",
+    items: ["Node.js", "Deno", "Bun", "Hono"],
+  },
+  {
+    label: "Databases",
+    items: ["PostgreSQL", "SQLite", "Drizzle ORM", "Prisma ORM"],
+  },
+  {
+    label: "Infrastructure",
+    items: [
+      "Linux",
+      "Docker",
+      "Podman",
+      "Caddy",
+      "Anubis",
+      "Hetzner",
+      "Cloudflare",
+      "Vercel",
+      "Netlify",
+      "Heroku",
+      "Git",
+    ],
+  },
 ];
 
 export const education = [
@@ -152,6 +162,6 @@ export const education = [
   {
     title: "Full-Stack Course",
     org: "Peerstack Academy",
-    period: "2024 to 2025",
+    period: "2025 to 2026",
   },
 ];

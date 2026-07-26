@@ -7,19 +7,19 @@ const year = new Date().getFullYear();
 
 <footer class="border-dark-10 mt-8 border-t">
   <div
-    class="text-muted-foreground mx-auto flex h-16 w-full max-w-4xl items-center gap-3 px-6 text-xs"
+    class="text-muted-foreground mx-auto flex min-h-16 w-full max-w-4xl flex-wrap items-center justify-center gap-x-3 gap-y-1 px-4 py-4 text-center text-xs sm:flex-nowrap sm:justify-start sm:px-6 sm:py-0 sm:text-left"
   >
     <span>&copy; {year} {site.name}</span>
     <Separator
       orientation="vertical"
-      class="data-[orientation=vertical]:h-3.5"
+      class="bg-border-input! hidden data-[orientation=vertical]:h-3.5! sm:block"
     />
     <span>Built with Astro on Linux</span>
     <a
       href={site.resume}
       target="_blank"
       rel="noreferrer noopener"
-      class="hover:text-foreground ml-auto transition-colors">Resume</a
+      class="hover:text-foreground transition-colors sm:ml-auto">Resume</a
     >
   </div>
 </footer>

@@ -5,7 +5,7 @@
 </script>
 
 <Tooltip.Provider>
-  <ul class="flex flex-wrap items-center gap-2">
+  <ul class="flex flex-wrap items-center justify-center gap-2 md:justify-start">
     {#each socials as social (social.href)}
       <li>
         <Tooltip.Root delayDuration={150}>

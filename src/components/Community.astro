@@ -13,7 +13,7 @@ import ArrowUpRight from "@lucide/svelte/icons/arrow-up-right";
     href="https://githubcommunity.az/"
     target="_blank"
     rel="noreferrer noopener"
-    class="rounded-card border-border-card bg-background-alt shadow-card hover:border-border-input-hover focus-visible:ring-dark focus-visible:ring-offset-background focus-visible:outline-hidden flex items-center gap-4 border p-5 transition-colors focus-visible:ring-2 focus-visible:ring-offset-2"
+    class="rounded-card border-border-card bg-background-alt shadow-card hover:border-border-input-hover focus-visible:ring-dark focus-visible:ring-offset-background focus-visible:outline-hidden relative flex flex-col items-start gap-4 border p-5 transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 sm:flex-row sm:items-center"
   >
     <img
       src="/images/logos/agc-white.png"
@@ -33,6 +33,10 @@ import ArrowUpRight from "@lucide/svelte/icons/arrow-up-right";
       </p>
     </div>
 
-    <ArrowUpRight class="text-muted-foreground size-4 shrink-0" />
+    <!-- pinned to the corner while the card is stacked, so the text keeps the
+         full width instead of wrapping around it -->
+    <ArrowUpRight
+      class="text-muted-foreground absolute right-5 top-5 size-4 shrink-0 sm:static"
+    />
   </a>
 </section>

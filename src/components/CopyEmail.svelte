@@ -4,6 +4,8 @@
   import Button from "./ui/Button.svelte";
   import { site } from "../data/site";
 
+  let { class: className = "" }: { class?: string } = $props();
+
   let copied = $state(false);
   let timer: ReturnType<typeof setTimeout>;
 
@@ -19,7 +21,7 @@
   }
 </script>
 
-<Button variant="outline" onclick={copy}>
+<Button variant="outline" onclick={copy} class={className}>
   {#if copied}
     <Check class="size-[18px]" />
     Copied

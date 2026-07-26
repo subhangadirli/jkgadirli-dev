@@ -13,25 +13,35 @@ import { site } from "../data/site";
   </h2>
 
   <div
-    class="rounded-card border-border-card bg-background-alt shadow-card border p-6 sm:p-8"
+    class="rounded-card border-border-card bg-background-alt shadow-card border p-6 text-center sm:p-8 md:text-left"
   >
     <p class="text-xl font-semibold tracking-[-0.02em]">
       Have something in mind?
     </p>
 
-    <p class="text-muted-foreground mt-3 max-w-[52ch] text-[15px] leading-relaxed">
+    <p
+      class="text-muted-foreground mx-auto mt-3 max-w-[52ch] text-[15px] leading-relaxed md:mx-0"
+    >
       Open to freelance work, collaborations and open-source contributions. The
       fastest way to reach me is email.
     </p>
 
-    <p class="text-foreground-alt mt-6 font-mono text-sm">{site.email}</p>
+    <!-- the address can outgrow a narrow phone, so it wraps rather than
+         stretching the card -->
+    <p class="text-foreground-alt mt-6 break-all font-mono text-sm">
+      {site.email}
+    </p>
 
-    <div class="mt-6 flex flex-wrap items-center gap-3">
-      <Button href={`mailto:${site.email}`}>
+    <!-- full width while stacked, so the two buttons read as one block instead
+         of two ragged edges -->
+    <div
+      class="mt-6 flex flex-col items-stretch gap-3 md:flex-row md:flex-wrap md:items-center"
+    >
+      <Button href={`mailto:${site.email}`} class="w-full md:w-auto">
         <Mail class="size-[18px]" />
         Send an email
       </Button>
-      <CopyEmail client:visible />
+      <CopyEmail client:visible class="w-full md:w-auto" />
     </div>
   </div>
 </section>

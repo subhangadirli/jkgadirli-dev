@@ -116,16 +116,29 @@ export const projects: Project[] = [
   },
 ];
 
+/** ordered in groups: languages, frontend, runtimes, data, then infrastructure */
 export const skills = [
-  "HTML",
-  "CSS",
-  "JavaScript",
   "TypeScript",
+  "JavaScript",
   "Python",
-  "Linux",
-  "Git",
-  "Astro",
+  "Ruby",
   "Bash",
+  "React",
+  "Svelte",
+  "Astro",
+  "Tailwind CSS",
+  "Node.js",
+  "Deno",
+  "Bun",
+  "Hono",
+  "PostgreSQL",
+  "SQLite",
+  "Linux",
+  "Docker",
+  "Podman",
+  "Caddy",
+  "Hetzner",
+  "Git",
 ];
 
 export const education = [

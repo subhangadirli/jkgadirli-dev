@@ -143,6 +143,23 @@
   --shadow-card: 0px 2px 0px 1px rgba(0, 0, 0, 0.4);
 }
 
+/* Scroll Bar */
+html {
+  @apply overflow-y-scroll scrollbar-gutter-stable;
+}
+
+html::-webkit-scrollbar {
+  @apply w-[0.4rem] bg-transparent;
+}
+
+html::-webkit-scrollbar-thumb {
+  @apply bg-foreground rounded-[5rem];
+}
+
+html::-webkit-scrollbar-thumb:hover {
+  @apply bg-foreground-alt;
+}
+
 @keyframes accordion-down {
   from {
     height: 0;

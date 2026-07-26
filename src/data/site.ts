@@ -41,7 +41,7 @@ export const projects: Project[] = [
   {
     title: "Firefox One 🦊+",
     blurb:
-      "A browser with the power of Firefox and the aesthetics of Opera One — a modern, fluid, fully customizable interface.",
+      "A browser with the power of Firefox and the aesthetics of Opera One, a modern, fluid, fully customizable interface.",
     href: "https://github.com/subhangadirli/FoxOne",
     image:
       "https://raw.githubusercontent.com/subhangadirli/FoxOne/refs/heads/main/branding/FoxOne/content/preview.png",
@@ -50,7 +50,7 @@ export const projects: Project[] = [
   {
     title: "ZenTab",
     blurb:
-      "A focused, minimal browser start page for Firefox — built to cut distraction with a clean, customizable interface.",
+      "A focused, minimal browser start page for Firefox, built to cut distraction with a clean, customizable interface.",
     href: "https://github.com/subhangadirli/ZenTab",
     image:
       "https://raw.githubusercontent.com/subhangadirli/ZenTab/refs/heads/master/screen.png",

@@ -1,6 +1,6 @@
 # jkgadirli.dev
 
-Personal portfolio — single-page, dark, glass/blur. Built with [Astro](https://astro.build) as a static site.
+Personal portfolio. Single-page, dark, glass/blur. Built with [Astro](https://astro.build) as a static site.
 
 ## Commands
 
@@ -15,15 +15,15 @@ npm run preview  # serve the build locally
 
 ```
 src/
-  data/site.ts        # all content: bio, projects, skills, links — edit here first
+  data/site.ts        # all content: bio, projects, skills, links, edit here first
   layouts/Base.astro  # <head>, analytics, aurora background, scroll-reveal
   components/         # Nav, Hero, About, Projects, Contact, Footer
   styles/global.css   # design tokens (--ink, --glass, --accent…), .glass, .aurora
 pages/index.astro     # the one page, composed from the components
-public/               # fonts, images, robots.txt, sitemap.xml — copied as-is
+public/               # fonts, images, robots.txt, sitemap.xml, copied as-is
 ```
 
-Adding a project means one entry in the `projects` array in `src/data/site.ts` — no markup changes.
+Adding a project means one entry in the `projects` array in `src/data/site.ts`, with no markup changes.
 
 ## Design notes
 

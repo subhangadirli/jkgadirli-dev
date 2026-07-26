@@ -17,7 +17,7 @@ import { projects } from "../data/site";
               href={project.href}
               target="_blank"
               rel="noopener"
-              aria-label={`${project.title} — open project`}
+              aria-label={`${project.title}, open project`}
             />
 
             <div class="shot">
@@ -116,7 +116,7 @@ import { projects } from "../data/site";
   }
 
   /* scrim: several project shots are light-on-white and would otherwise
-     burn holes in the dark page — this settles them into the palette */
+     burn holes in the dark page, so this settles them into the palette */
   .shot::after {
     content: "";
     position: absolute;

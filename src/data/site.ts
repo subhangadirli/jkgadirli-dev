@@ -43,7 +43,7 @@ export const socials = [
 
 export const nav = [
   { label: "About", href: "#about" },
-  { label: "Work", href: "#work" },
+  { label: "Projects", href: "#projects" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -64,6 +64,15 @@ export type Project = {
 /** the pinned repositories on github.com/subhangadirli */
 export const projects: Project[] = [
   {
+    title: "Community Website",
+    blurb:
+      "The website of the Azerbaijan GitHub Community, built and maintained with the community.",
+    href: "https://github.com/Azerbaijan-Git-Community/website",
+    icon: "users",
+    logo: { src: "/images/logos/agc-white.png", mode: "mark" },
+    tags: ["TypeScript", "Web", "Community"],
+  },
+  {
     title: "omicron",
     blurb:
       "Minimal, modern, self-hostable blogging over ActivityPub, so posts federate into the fediverse instead of sitting on an island.",
@@ -71,14 +80,6 @@ export const projects: Project[] = [
     icon: "rss",
     logo: { src: "/images/logos/omicron.png", mode: "mark" },
     tags: ["TypeScript", "ActivityPub", "Self-hosted"],
-  },
-  {
-    title: "x-to-mastodon-bot",
-    blurb:
-      "An X sync bot for Mastodon that mirrors posts across, keeping both timelines aligned without manual work.",
-    href: "https://github.com/subhangadirli/x-to-mastodon-bot",
-    icon: "bot",
-    tags: ["JavaScript", "Automation", "API"],
   },
   {
     title: "gazan",
@@ -99,15 +100,6 @@ export const projects: Project[] = [
     tags: ["TypeScript", "MCP", "API"],
   },
   {
-    title: "Azerbaijan Git Community",
-    blurb:
-      "The website of the Azerbaijan GitHub Community, built and maintained with the community.",
-    href: "https://github.com/Azerbaijan-Git-Community/website",
-    icon: "users",
-    logo: { src: "/images/logos/agc-white.png", mode: "mark" },
-    tags: ["TypeScript", "Web", "Community"],
-  },
-  {
     title: "vs-code-plus-icons-for-zed",
     blurb:
       "Custom file and folder icons for the Zed editor, over 800 of them, ported from the VS Code icon set.",
@@ -115,6 +107,14 @@ export const projects: Project[] = [
     icon: "palette",
     logo: { src: "/images/logos/zed-white.png", mode: "mark" },
     tags: ["TypeScript", "Zed", "Icons"],
+  },
+  {
+    title: "x-to-mastodon-bot",
+    blurb:
+      "An X sync bot for Mastodon that mirrors posts across, keeping both timelines aligned without manual work.",
+    href: "https://github.com/subhangadirli/x-to-mastodon-bot",
+    icon: "bot",
+    tags: ["JavaScript", "Automation", "API"],
   },
 ];
 

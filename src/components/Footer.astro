@@ -1,27 +1,25 @@
 ---
+import Separator from "./ui/Separator.svelte";
+import { site } from "../data/site";
+
 const year = new Date().getFullYear();
 ---
 
-<footer>
-  <div class="shell row">
-    <p>© JK {year}. None of your rights reserved.</p>
-    <p class="built">Built with Astro on Linux.</p>
+<footer class="border-dark-10 mt-8 border-t">
+  <div
+    class="text-muted-foreground mx-auto flex h-16 w-full max-w-4xl items-center gap-3 px-6 text-xs"
+  >
+    <span>&copy; {year} {site.name}</span>
+    <Separator
+      orientation="vertical"
+      class="data-[orientation=vertical]:h-3.5"
+    />
+    <span>Built with Astro on Linux</span>
+    <a
+      href={site.resume}
+      target="_blank"
+      rel="noreferrer noopener"
+      class="hover:text-foreground ml-auto transition-colors">Resume</a
+    >
   </div>
 </footer>
-
-<style>
-  footer {
-    border-top: 1px solid var(--line);
-    padding-block: 2rem;
-    color: var(--ink-faint);
-    font-size: 0.85rem;
-  }
-
-  .row {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.5rem 1.5rem;
-  }
-</style>

@@ -1,0 +1,37 @@
+---
+import Button from "./ui/Button.svelte";
+import { nav, site } from "../data/site";
+---
+
+<header
+  class="border-dark-10 bg-background/80 sticky top-0 z-40 border-b backdrop-blur-md"
+>
+  <div class="mx-auto flex h-16 w-full max-w-4xl items-center gap-6 px-6">
+    <a
+      href="/"
+      class="border-border-input rounded-button flex size-7 shrink-0 items-center justify-center border text-[11px] font-semibold tracking-tight"
+      aria-label={site.name}
+    >
+      {site.short}
+    </a>
+
+    <nav class="flex items-center gap-1" aria-label="Sections">
+      {
+        nav.map((item) => (
+          <a
+            href={item.href}
+            class="text-foreground-alt hover:bg-dark-10 hover:text-foreground rounded-button px-2.5 py-1.5 text-sm font-medium transition-colors"
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="ml-auto hidden sm:block">
+      <Button href={`mailto:${site.email}`} size="sm" variant="outline">
+        Get in touch
+      </Button>
+    </div>
+  </div>
+</header>

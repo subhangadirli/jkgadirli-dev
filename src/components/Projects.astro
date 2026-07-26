@@ -1,204 +1,65 @@
 ---
+import ArrowUpRight from "@lucide/svelte/icons/arrow-up-right";
+import Terminal from "@lucide/svelte/icons/terminal";
+import Globe from "@lucide/svelte/icons/globe";
+import LayoutGrid from "@lucide/svelte/icons/layout-grid";
+import Bot from "@lucide/svelte/icons/bot";
 import { projects } from "../data/site";
+
+const icons = {
+  terminal: Terminal,
+  globe: Globe,
+  layout: LayoutGrid,
+  bot: Bot,
+};
 ---
 
-<section class="section" id="work">
-  <div class="shell">
-    <p class="eyebrow" data-reveal>Selected work</p>
+<section id="work" class="border-dark-10 border-t py-16">
+  <h2
+    class="text-muted-foreground mb-8 text-xs font-semibold uppercase tracking-[0.12em]"
+  >
+    Work
+  </h2>
 
-    <h2 data-reveal>Things I've built.</h2>
+  <ul class="grid gap-4 sm:grid-cols-2">
+    {
+      projects.map((project) => {
+        const Icon = icons[project.icon];
 
-    <div class="grid">
-      {
-        projects.map((project) => (
-          <article class="card glass" data-reveal>
+        return (
+          <li>
             <a
-              class="hit"
               href={project.href}
               target="_blank"
-              rel="noopener"
-              aria-label={`${project.title}, open project`}
-            />
-
-            <div class="shot">
-              <img
-                src={project.image}
-                alt={`${project.title} preview`}
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-
-            <div class="body">
-              <div class="head">
-                <h3>{project.title}</h3>
-                <svg
-                  class="arrow"
-                  viewBox="0 0 16 16"
-                  width="16"
-                  height="16"
-                  fill="none"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M4.5 11.5 11.5 4.5M11.5 4.5H5.75M11.5 4.5v5.75"
-                    stroke="currentColor"
-                    stroke-width="1.4"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
+              rel="noreferrer noopener"
+              class="rounded-card border-border-card bg-background-alt shadow-card hover:border-border-input-hover focus-visible:ring-dark focus-visible:ring-offset-background focus-visible:outline-hidden flex h-full flex-col border p-5 transition-colors focus-visible:ring-2 focus-visible:ring-offset-2"
+            >
+              <div class="flex items-start justify-between gap-3">
+                <span class="border-dark-10 bg-background rounded-input text-foreground-alt inline-flex size-9 items-center justify-center border">
+                  <Icon class="size-[18px]" />
+                </span>
+                <ArrowUpRight class="text-muted-foreground size-4 shrink-0" />
               </div>
 
-              <p>{project.blurb}</p>
+              <h3 class="mt-4 text-[15px] font-semibold tracking-[-0.01em]">
+                {project.title}
+              </h3>
 
-              <ul class="tags">
+              <p class="text-muted-foreground mt-2 text-sm leading-relaxed">
+                {project.blurb}
+              </p>
+
+              <ul class="mt-4 flex flex-wrap gap-1.5 pt-1">
                 {project.tags.map((tag) => (
-                  <li>{tag}</li>
+                  <li class="border-dark-10 text-muted-foreground rounded-button border px-1.5 py-0.5 text-xs font-medium">
+                    {tag}
+                  </li>
                 ))}
               </ul>
-            </div>
-          </article>
-        ))
-      }
-    </div>
-  </div>
-</section>
-
-<style>
-  h2 {
-    margin-bottom: 3rem;
-    font-size: clamp(1.8rem, 3.6vw, 2.6rem);
-  }
-
-  .grid {
-    display: grid;
-    gap: 1.25rem;
-    grid-template-columns: 1fr;
-  }
-
-  @media (min-width: 48rem) {
-    .grid {
-      grid-template-columns: repeat(2, 1fr);
+            </a>
+          </li>
+        );
+      })
     }
-  }
-
-  .card {
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    transition:
-      transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-      border-color 0.4s ease,
-      background 0.4s ease;
-  }
-
-  .card:hover {
-    transform: translateY(-4px);
-    border-color: var(--line-strong);
-    background: var(--glass-strong);
-  }
-
-  /* full-card click target, keeps markup a single link per card */
-  .hit {
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    border-radius: inherit;
-  }
-
-  .shot {
-    position: relative;
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
-    border-bottom: 1px solid var(--line);
-    background: #0f0f16;
-  }
-
-  /* scrim: several project shots are light-on-white and would otherwise
-     burn holes in the dark page, so this settles them into the palette */
-  .shot::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-      linear-gradient(to top, rgba(7, 7, 10, 0.72), rgba(7, 7, 10, 0.18)),
-      rgba(10, 10, 18, 0.28);
-    transition: opacity 0.45s ease;
-    pointer-events: none;
-  }
-
-  .card:hover .shot::after {
-    opacity: 0.35;
-  }
-
-  .shot img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: saturate(1.05) contrast(1.02);
-    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  .card:hover .shot img {
-    transform: scale(1.04);
-  }
-
-  .body {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    padding: 1.35rem 1.4rem 1.5rem;
-  }
-
-  .head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    margin-bottom: 0.6rem;
-  }
-
-  h3 {
-    font-size: 1.15rem;
-    font-weight: 600;
-    letter-spacing: -0.02em;
-  }
-
-  .arrow {
-    flex: none;
-    color: var(--ink-faint);
-    transition:
-      transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
-      color 0.3s ease;
-  }
-
-  .card:hover .arrow {
-    transform: translate(2px, -2px);
-    color: var(--ink);
-  }
-
-  .body p {
-    color: var(--ink-muted);
-    font-size: 0.94rem;
-  }
-
-  .tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    margin-top: auto;
-    padding-top: 1.25rem;
-  }
-
-  .tags li {
-    color: var(--ink-faint);
-    font-size: 0.75rem;
-    letter-spacing: 0.04em;
-  }
-
-  .tags li + li::before {
-    content: "·";
-    margin-right: 0.4rem;
-  }
-</style>
+  </ul>
+</section>

@@ -1,139 +1,33 @@
 ---
-import { skills } from "../data/site";
+import AboutTabs from "./AboutTabs.svelte";
 ---
 
-<section class="section" id="about">
-  <div class="shell">
-    <p class="eyebrow" data-reveal>About</p>
+<section id="about" class="border-dark-10 border-t py-16">
+  <h2
+    class="text-muted-foreground mb-8 text-xs font-semibold uppercase tracking-[0.12em]"
+  >
+    About
+  </h2>
 
-    <div class="grid">
-      <div class="prose" data-reveal>
-        <h2>
-          Code as craft. Part engineering, part <span class="accent-italic"
-            >philosophy</span
-          >.
-        </h2>
+  <div class="grid gap-10 md:grid-cols-[1.1fr_0.9fr] md:items-start md:gap-12">
+    <div>
+      <p class="text-xl font-semibold tracking-[-0.02em]">
+        Code as craft. Part engineering, part philosophy.
+      </p>
 
-        <p>
-          I'm a Computer Science student at Azerbaijan Technical University. It
-          started in middle school with my first computer, which led me to Linux,
-          and coding stopped being a skill and became a way of thinking.
-        </p>
+      <p class="text-muted-foreground mt-4 text-[15px] leading-relaxed">
+        It started in middle school with my first computer, which led me to
+        Linux, and coding stopped being a skill and became a way of thinking.
+      </p>
 
-        <p>
-          I work across the whole stack, backend logic through to frontend
-          design, turning ideas into things people can actually use. Away from
-          the editor I read philosophy and write about where technology,
-          creativity and human thought meet.
-        </p>
-      </div>
-
-      <aside class="side" data-reveal>
-        <div class="card glass">
-          <h3>Toolkit</h3>
-          <ul class="chips">
-            {skills.map((skill) => <li>{skill}</li>)}
-          </ul>
-        </div>
-
-        <div class="card glass">
-          <h3>Education</h3>
-          <ul class="timeline">
-            <li>
-              <p class="row-title">BSc Computer Science</p>
-              <p class="row-meta">Azerbaijan Technical University · 2024–2028</p>
-            </li>
-            <li>
-              <p class="row-title">Full-Stack Course</p>
-              <p class="row-meta">Peerstack Academy · 2024–2025</p>
-            </li>
-          </ul>
-        </div>
-      </aside>
+      <p class="text-muted-foreground mt-3 text-[15px] leading-relaxed">
+        I work across the whole stack, backend logic through to frontend design,
+        turning ideas into things people can actually use. Away from the editor I
+        read philosophy and write about where technology, creativity and human
+        thought meet.
+      </p>
     </div>
+
+    <AboutTabs client:visible />
   </div>
 </section>
-
-<style>
-  .grid {
-    display: grid;
-    gap: clamp(2rem, 5vw, 4rem);
-    grid-template-columns: 1fr;
-  }
-
-  @media (min-width: 56rem) {
-    .grid {
-      grid-template-columns: 1.15fr 0.85fr;
-      align-items: start;
-    }
-  }
-
-  h2 {
-    max-width: 22ch;
-    margin-bottom: 1.75rem;
-    font-size: clamp(1.8rem, 3.6vw, 2.6rem);
-  }
-
-  .prose p {
-    max-width: 54ch;
-    color: var(--ink-muted);
-  }
-
-  .prose p + p {
-    margin-top: 1.1rem;
-  }
-
-  .side {
-    display: grid;
-    gap: 1rem;
-  }
-
-  .card {
-    padding: 1.5rem;
-  }
-
-  .card h3 {
-    margin-bottom: 1.1rem;
-    color: var(--ink-faint);
-    font-size: 0.72rem;
-    font-weight: 500;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-  }
-
-  .chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
-  .chips li {
-    padding: 0.35rem 0.8rem;
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.03);
-    font-size: 0.85rem;
-    color: var(--ink);
-  }
-
-  .timeline {
-    display: grid;
-    gap: 1.1rem;
-  }
-
-  .timeline li {
-    padding-left: 1rem;
-    border-left: 1px solid var(--line-strong);
-  }
-
-  .row-title {
-    font-size: 0.95rem;
-    font-weight: 500;
-  }
-
-  .row-meta {
-    margin-top: 0.15rem;
-    color: var(--ink-faint);
-    font-size: 0.85rem;
-  }
-</style>

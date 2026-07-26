@@ -1,134 +1,59 @@
 ---
+import MapPin from "@lucide/svelte/icons/map-pin";
+import FileText from "@lucide/svelte/icons/file-text";
+import Mail from "@lucide/svelte/icons/mail";
+import Avatar from "./ui/Avatar.svelte";
+import Button from "./ui/Button.svelte";
+import SocialLinks from "./SocialLinks.astro";
 import { site } from "../data/site";
 ---
 
-<section class="hero" id="top">
-  <div class="shell inner">
-    <p class="status glass" data-reveal>
-      <span class="dot" aria-hidden="true"></span>
-      Open to work &amp; collaboration
-    </p>
+<section class="pb-16 pt-20 sm:pb-20 sm:pt-28">
+  <div class="mb-8 flex items-center gap-4">
+    <Avatar
+      client:load
+      src="/images/pp.jpg"
+      alt={site.name}
+      fallback={site.short}
+    />
 
-    <h1 data-reveal>
-      Building software
-      <br />
-      that feels <span class="accent-italic">considered</span>.
-    </h1>
+    <span
+      class="border-dark-10 bg-background-alt text-muted-foreground rounded-input inline-flex items-center gap-1.5 border px-2.5 py-1 text-xs font-medium"
+    >
+      <MapPin class="size-3.5" />
+      {site.location}
+    </span>
+  </div>
 
-    <p class="lede" data-reveal>
-      I'm {site.name}, a full-stack developer and Linux user from Baku. I make
-      operating systems, browsers and web interfaces where the details are the
-      point.
-    </p>
+  <h1
+    class="text-4xl font-semibold leading-[1.05] tracking-[-0.03em] sm:text-5xl"
+  >
+    {site.name}
+  </h1>
 
-    <div class="actions" data-reveal>
-      <a class="btn primary" href="#work">View my work</a>
-      <a class="btn ghost glass" href="#contact">Get in touch</a>
-    </div>
+  <p class="text-foreground-alt mt-4 text-lg font-medium">
+    {site.role}
+  </p>
+
+  <p
+    class="text-muted-foreground mt-4 max-w-[54ch] text-[15px] leading-relaxed"
+  >
+    Computer Science student at Azerbaijan Technical University. I build
+    operating systems, browsers and web experiences, mostly on Linux.
+  </p>
+
+  <div class="mt-8 flex flex-wrap items-center gap-3">
+    <Button href={site.resume} target="_blank" rel="noreferrer noopener">
+      <FileText class="size-[18px]" />
+      Resume
+    </Button>
+    <Button href={`mailto:${site.email}`} variant="outline">
+      <Mail class="size-[18px]" />
+      Email me
+    </Button>
+  </div>
+
+  <div class="mt-10">
+    <SocialLinks />
   </div>
 </section>
-
-<style>
-  .hero {
-    display: flex;
-    align-items: center;
-    min-height: min(86svh, 820px);
-    padding-block: clamp(3rem, 8vh, 6rem) var(--section-y);
-  }
-
-  .inner {
-    max-width: 900px;
-  }
-
-  .status {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    margin-bottom: 2rem;
-    padding: 0.4rem 0.9rem 0.4rem 0.75rem;
-    border-radius: 999px;
-    color: var(--ink-muted);
-    font-size: 0.8rem;
-    letter-spacing: 0.01em;
-  }
-
-  .dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #55e39a;
-    box-shadow: 0 0 0 3px rgba(85, 227, 154, 0.16);
-    animation: pulse 2.6s ease-in-out infinite;
-  }
-
-  @keyframes pulse {
-    50% {
-      box-shadow: 0 0 0 6px rgba(85, 227, 154, 0.04);
-    }
-  }
-
-  h1 {
-    font-size: clamp(2.6rem, 7.4vw, 5.25rem);
-    font-weight: 600;
-  }
-
-  .lede {
-    max-width: 46ch;
-    margin-top: 1.75rem;
-    color: var(--ink-muted);
-    font-size: clamp(1rem, 0.95rem + 0.35vw, 1.2rem);
-  }
-
-  .actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    margin-top: 2.5rem;
-  }
-
-  .btn {
-    padding: 0.85rem 1.6rem;
-    border-radius: 999px;
-    font-size: 0.95rem;
-    font-weight: 500;
-    transition:
-      transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
-      background 0.25s ease,
-      border-color 0.25s ease;
-  }
-
-  .btn:hover {
-    transform: translateY(-2px);
-  }
-
-  .primary {
-    background: linear-gradient(135deg, #fff, #d9d7ee);
-    color: #0a0a0f;
-    border: 1px solid transparent;
-  }
-
-  .primary:hover {
-    background: #fff;
-  }
-
-  .ghost {
-    border-radius: 999px;
-    color: var(--ink);
-  }
-
-  .ghost:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.24);
-  }
-
-  /* stagger the reveals down the stack */
-  [data-reveal]:nth-child(2) {
-    transition-delay: 0.08s;
-  }
-  [data-reveal]:nth-child(3) {
-    transition-delay: 0.16s;
-  }
-  [data-reveal]:nth-child(4) {
-    transition-delay: 0.24s;
-  }
-</style>

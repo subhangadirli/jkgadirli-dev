@@ -1,150 +1,37 @@
 ---
-import { site, socials } from "../data/site";
+import Mail from "@lucide/svelte/icons/mail";
+import Button from "./ui/Button.svelte";
+import CopyEmail from "./CopyEmail.svelte";
+import { site } from "../data/site";
 ---
 
-<section class="section" id="contact">
-  <div class="shell">
-    <div class="panel glass" data-reveal>
-      <p class="eyebrow">Contact</p>
+<section id="contact" class="border-dark-10 border-t py-16">
+  <h2
+    class="text-muted-foreground mb-8 text-xs font-semibold uppercase tracking-[0.12em]"
+  >
+    Contact
+  </h2>
 
-      <h2>
-        Got something worth <span class="accent-italic">building</span>?
-      </h2>
+  <div
+    class="rounded-card border-border-card bg-background-alt shadow-card border p-6 sm:p-8"
+  >
+    <p class="text-xl font-semibold tracking-[-0.02em]">
+      Have something in mind?
+    </p>
 
-      <p class="lede">
-        Freelance work, collaboration, or just a good conversation about Linux.
-        My inbox is open.
-      </p>
+    <p class="text-muted-foreground mt-3 max-w-[52ch] text-[15px] leading-relaxed">
+      Open to freelance work, collaborations and open-source contributions. The
+      fastest way to reach me is email.
+    </p>
 
-      <a class="mail" href={`mailto:${site.email}`}>
-        <span>{site.email}</span>
-        <svg viewBox="0 0 16 16" width="15" height="15" fill="none" aria-hidden="true">
-          <path
-            d="M3 8h10M9.25 4.25 13 8l-3.75 3.75"
-            stroke="currentColor"
-            stroke-width="1.4"
-            stroke-linecap="round"
-            stroke-linejoin="round"></path>
-        </svg>
-      </a>
+    <p class="text-foreground-alt mt-6 font-mono text-sm">{site.email}</p>
 
-      <ul class="socials">
-        {
-          socials.map((social) => (
-            <li>
-              <a href={social.href} target="_blank" rel="noopener">
-                {social.label}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
+    <div class="mt-6 flex flex-wrap items-center gap-3">
+      <Button href={`mailto:${site.email}`}>
+        <Mail class="size-[18px]" />
+        Send an email
+      </Button>
+      <CopyEmail client:visible />
     </div>
   </div>
 </section>
-
-<style>
-  .panel {
-    padding: clamp(2rem, 6vw, 4rem);
-    text-align: center;
-    overflow: hidden;
-  }
-
-  /* soft light bloom behind the panel content */
-  .panel::after {
-    content: "";
-    position: absolute;
-    top: -40%;
-    left: 50%;
-    width: 70%;
-    aspect-ratio: 1;
-    translate: -50% 0;
-    background: radial-gradient(
-      circle,
-      rgba(139, 124, 255, 0.22) 0%,
-      transparent 65%
-    );
-    filter: blur(40px);
-    pointer-events: none;
-  }
-
-  .panel > * {
-    position: relative;
-    z-index: 1;
-  }
-
-  .eyebrow::before {
-    display: none;
-  }
-
-  h2 {
-    max-width: 22ch;
-    margin-inline: auto;
-    font-size: clamp(1.9rem, 4.4vw, 3rem);
-  }
-
-  .lede {
-    max-width: 42ch;
-    margin: 1.25rem auto 2.25rem;
-    color: var(--ink-muted);
-  }
-
-  .mail {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    padding: 0.9rem 1.7rem;
-    border-radius: 999px;
-    background: linear-gradient(135deg, #fff, #d9d7ee);
-    color: #0a0a0f;
-    font-size: 0.98rem;
-    font-weight: 500;
-    transition:
-      transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
-      box-shadow 0.25s ease;
-  }
-
-  .mail:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 14px 40px -18px rgba(139, 124, 255, 0.8);
-  }
-
-  .mail svg {
-    transition: transform 0.25s ease;
-  }
-
-  .mail:hover svg {
-    transform: translateX(3px);
-  }
-
-  .socials {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1.5rem;
-    margin-top: 2.5rem;
-    font-size: 0.9rem;
-    color: var(--ink-muted);
-  }
-
-  .socials a {
-    padding-bottom: 2px;
-    border-bottom: 1px solid transparent;
-    transition:
-      color 0.25s ease,
-      border-color 0.25s ease;
-  }
-
-  .socials a:hover {
-    color: var(--ink);
-    border-color: var(--line-strong);
-  }
-
-  @media (max-width: 30rem) {
-    .mail {
-      width: 100%;
-      justify-content: center;
-      font-size: 0.85rem;
-    }
-  }
-</style>

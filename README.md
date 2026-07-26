@@ -1,6 +1,8 @@
 # jkgadirli.dev
 
-Personal portfolio. Single-page, dark, glass/blur. Built with [Astro](https://astro.build) as a static site.
+Personal portfolio. Single page, dark, flat. Built with [Astro](https://astro.build),
+[Bits UI](https://bits-ui.com) components in Svelte islands, Tailwind CSS v4 and
+[Lucide](https://lucide.dev) icons.
 
 ## Commands
 
@@ -15,24 +17,35 @@ npm run preview  # serve the build locally
 
 ```
 src/
-  data/site.ts        # all content: bio, projects, skills, links, edit here first
-  layouts/Base.astro  # <head>, meta, aurora background, scroll-reveal
-  components/         # Nav, Hero, About, Projects, Contact, Footer
-  styles/global.css   # design tokens (--ink, --glass, --accent…), .glass, .aurora
-pages/index.astro     # the one page, composed from the components
-public/               # fonts, images, robots.txt, sitemap.xml, copied as-is
+  data/site.ts          # all content: bio, projects, skills, education, links
+  layouts/Base.astro    # <head>, meta, page shell
+  components/           # Header, Hero, About, Projects, Contact, Footer, SocialLinks
+  components/ui/        # Bits UI wrappers: Button, Avatar, Separator
+  styles/app.css        # Tailwind entry plus the design tokens
+pages/index.astro       # the one page, composed from the components
+public/                 # font, images, robots.txt, sitemap.xml, copied as-is
 ```
 
-Adding a project means one entry in the `projects` array in `src/data/site.ts`, with no markup changes.
+Adding a project means one entry in the `projects` array in `src/data/site.ts`.
+Its `icon` field maps to a Lucide component in `Projects.astro`.
 
 ## Design notes
 
-- Dark only; `color-scheme: dark` is declared, there is no light theme.
-- Glass surfaces come from the `.glass` class (translucent fill + `backdrop-filter` + top-edge sheen). Reuse it rather than re-rolling the effect.
-- The ambient colour is three blurred radial gradients in `.aurora`, fixed behind the content with a faint noise layer to stop wide-screen banding.
-- Sections fade up on scroll via `[data-reveal]` + one `IntersectionObserver` in `Base.astro`. Everything is disabled under `prefers-reduced-motion`.
-- Project screenshots get a scrim (`.shot::after`) because several are light-on-white and would otherwise break the dark palette.
+- The tokens in `src/styles/app.css` (`--background`, `--dark-10`, `--radius-card`,
+  `--shadow-card` and the rest) are transcribed from the Bits UI documentation
+  theme, so component classes copied out of those docs render as they do there.
+- Dark only. `<html>` carries the `dark` class permanently, which keeps the
+  `dark:` variants in the docs class strings working as written.
+- Flat surfaces: a border, a small shadow, one step of background lightness.
+  No gradients. Radii stay in the 5px to 16px range from the token scale.
+- Interactive components are Svelte islands: `AboutTabs` (`client:visible`),
+  `CopyEmail` (`client:visible`), `Avatar` (`client:load`). Everything else,
+  including the Bits UI `Button` and `Separator`, renders to static HTML with no
+  client JS.
+- Lucide dropped brand glyphs in v1, so the social links are labelled buttons
+  rather than icon buttons.
 
 ## Deploy
 
-Vercel, static output. `vercel.json` sets `cleanUrls`. Build command `npm run build`, output directory `dist`.
+Vercel, static output. `vercel.json` sets `cleanUrls`. Framework preset Astro,
+build command `npm run build`, output directory `dist`.

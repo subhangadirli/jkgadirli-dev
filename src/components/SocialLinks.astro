@@ -1,0 +1,29 @@
+---
+import ArrowUpRight from "@lucide/svelte/icons/arrow-up-right";
+import Button from "./ui/Button.svelte";
+import { socials } from "../data/site";
+---
+
+{
+  /* Lucide dropped brand glyphs in v1, so these are labelled links rather
+     than icon buttons. */
+}
+<ul class="flex flex-wrap items-center gap-2">
+  {
+    socials.map((social) => (
+      <li>
+        <Button
+          href={social.href}
+          target="_blank"
+          rel="noreferrer noopener"
+          variant="outline"
+          size="sm"
+          class="font-medium"
+        >
+          {social.label}
+          <ArrowUpRight class="text-muted-foreground size-3.5" />
+        </Button>
+      </li>
+    ))
+  }
+</ul>

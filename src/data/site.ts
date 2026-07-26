@@ -1,5 +1,7 @@
 export const site = {
   name: "Subhan JK Gadirli",
+  /** the browser tab and og:title, kept short so it does not get truncated */
+  title: "Subhan Gadirli",
   short: "JK",
   role: "Full-stack developer & Linux user",
   location: "Baku, Azerbaijan",

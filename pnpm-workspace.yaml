@@ -1,0 +1,5 @@
+# I usually set minimumReleaseAge to 1440 minutes (1 day) but for your comfort let it be 60 minutes.
+minimumReleaseAge: 60 
+saveExact: true
+allowBuilds:
+  esbuild: true

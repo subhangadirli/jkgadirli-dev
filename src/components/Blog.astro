@@ -1,0 +1,91 @@
+---
+import ArrowUpRight from "@lucide/svelte/icons/arrow-up-right";
+import { feedUrl, formatDate, parseFeed, profileUrl } from "../data/blog";
+import type { Post } from "../data/blog";
+
+/**
+ * The feed is read at build time. It carries no CORS header, so the browser
+ * cannot refetch it the way the contribution graph does, and the section is
+ * static markup that refreshes on each deploy.
+ */
+let posts: Post[] = [];
+
+try {
+  const res = await fetch(feedUrl, { signal: AbortSignal.timeout(10000) });
+  if (res.ok) posts = parseFeed(await res.text());
+  else console.warn(`[blog] feed returned ${res.status}`);
+} catch (err) {
+  console.warn("[blog] could not fetch the feed at build time", err);
+}
+---
+
+<section id="blog" class="border-dark-10 border-t py-16">
+  <div class="mb-8 flex items-baseline justify-between gap-4">
+    <h2
+      class="text-muted-foreground text-xs font-semibold uppercase tracking-[0.12em]"
+    >
+      Blog
+    </h2>
+
+    <a
+      href={profileUrl}
+      target="_blank"
+      rel="noreferrer noopener"
+      class="text-muted-foreground hover:text-foreground rounded-button text-sm transition-colors"
+    >
+      All posts
+    </a>
+  </div>
+
+  {
+    posts.length > 0 ? (
+      <ul class="grid gap-4 sm:grid-cols-2">
+        {posts.map((post) => (
+          <li>
+            <a
+              href={post.href}
+              target="_blank"
+              rel="noreferrer noopener"
+              class="rounded-card border-border-card bg-background-alt shadow-card hover:border-border-input-hover focus-visible:ring-dark focus-visible:ring-offset-background focus-visible:outline-hidden flex h-full flex-col border p-5 transition-colors focus-visible:ring-2 focus-visible:ring-offset-2"
+            >
+              <div class="flex items-start justify-between gap-3">
+                <h3 class="text-[15px] font-semibold tracking-[-0.01em]">
+                  {post.title}
+                </h3>
+                <ArrowUpRight class="text-muted-foreground mt-0.5 size-4 shrink-0" />
+              </div>
+
+              <p class="text-muted-foreground mt-1 text-xs">
+                {formatDate(post.published)}
+              </p>
+
+              <p class="text-muted-foreground mt-3 text-sm leading-relaxed">
+                {post.excerpt}
+              </p>
+
+              {post.tags.length > 0 && (
+                <ul class="mt-4 flex flex-wrap gap-1.5 pt-1">
+                  {post.tags.map((tag) => (
+                    <li class="border-dark-10 text-muted-foreground rounded-button border px-1.5 py-0.5 text-xs font-medium">
+                      {tag}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </a>
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <a
+        href={profileUrl}
+        target="_blank"
+        rel="noreferrer noopener"
+        class="rounded-card border-border-card bg-background-alt shadow-card hover:border-border-input-hover text-muted-foreground flex items-center justify-between gap-3 border p-5 text-sm transition-colors"
+      >
+        Posts are on the blog
+        <ArrowUpRight class="size-4 shrink-0" />
+      </a>
+    )
+  }
+</section>

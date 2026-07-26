@@ -13,6 +13,12 @@ export const site = {
     "Full-stack developer and Linux enthusiast. Computer Science student at Azerbaijan Technical University, building fediverse tools, Linux desktop apps and developer tooling.",
 };
 
+/** the omicron instance the blog runs on, and the account posts are read from */
+export const blog = {
+  base: "https://omicron.blog",
+  user: "subhangadirli",
+};
+
 /** `icon` maps to a brand path in components/icons/brands.ts, or to the local
  * omicron logo. `me` links are also declared as rel="me" in the document head. */
 export const socials = [
@@ -44,6 +50,7 @@ export const socials = [
 export const nav = [
   { label: "About", href: "#about" },
   { label: "Projects", href: "#projects" },
+  { label: "Blog", href: "#blog" },
   { label: "Contact", href: "#contact" },
 ];
 

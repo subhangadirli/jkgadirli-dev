@@ -1,0 +1,27 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer>
+  <div class="shell row">
+    <p>© JK {year}. None of your rights reserved.</p>
+    <p class="built">Built with Astro on Linux.</p>
+  </div>
+</footer>
+
+<style>
+  footer {
+    border-top: 1px solid var(--line);
+    padding-block: 2rem;
+    color: var(--ink-faint);
+    font-size: 0.85rem;
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem 1.5rem;
+  }
+</style>

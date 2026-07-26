@@ -5,12 +5,13 @@
     src,
     alt,
     fallback,
-  }: { src: string; alt: string; fallback: string } = $props();
+    class: className = "size-16 text-[18px]",
+  }: { src: string; alt: string; fallback: string; class?: string } = $props();
 </script>
 
 <Avatar.Root
   delayMs={200}
-  class="data-[status=loaded]:border-foreground bg-muted text-muted-foreground size-16 rounded-full border text-[18px] font-medium uppercase data-[status=loading]:border-transparent"
+  class="data-[status=loaded]:border-foreground bg-muted text-muted-foreground shrink-0 rounded-full border font-medium uppercase data-[status=loading]:border-transparent {className}"
 >
   <div
     class="flex h-full w-full items-center justify-center overflow-hidden rounded-full border-2 border-transparent"

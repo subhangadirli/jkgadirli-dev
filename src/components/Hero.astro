@@ -10,57 +10,74 @@ import { site } from "../data/site";
 ---
 
 <section class="pb-14 pt-14 sm:pb-16 sm:pt-20">
-  <Avatar client:load src="/images/pp.jpg" alt={site.name} fallback={site.short} />
-
-  <h1
-    class="mt-6 text-4xl font-semibold leading-[1.05] tracking-[-0.03em] sm:text-5xl"
-  >
-    {site.name}
-  </h1>
-
-  <!-- role and location share one line so the header block stays a single
-       left-aligned stack instead of a badge floating beside the avatar -->
+  <!-- text left, portrait right, centred against each other. Below md the
+       portrait moves above the text, which is why the order is reversed. -->
   <div
-    class="text-foreground-alt mt-3 flex flex-wrap items-center gap-x-2.5 gap-y-1 text-lg font-medium"
+    class="flex flex-col-reverse items-start gap-8 md:flex-row md:items-center md:justify-between md:gap-14"
   >
-    <span>{site.role}</span>
-    <!-- the dot only makes sense while both parts share a line -->
-    <span class="text-muted-foreground hidden sm:inline" aria-hidden="true"
-      >&middot;</span
-    >
-    <span class="text-muted-foreground inline-flex items-center gap-1.5 text-base">
-      <MapPin class="size-4" />
-      {site.location}
-    </span>
-  </div>
+    <div class="min-w-0 flex-1">
+      <h1
+        class="text-4xl font-semibold leading-[1.05] tracking-[-0.03em] sm:text-5xl"
+      >
+        {site.name}
+      </h1>
 
-  <p class="text-muted-foreground mt-5 max-w-[54ch] text-[15px] leading-relaxed">
-    Computer Science student at Azerbaijan Technical University. I build
-    fediverse tools, Linux desktop apps and developer tooling, mostly in
-    TypeScript and Python.
-  </p>
+      <!-- role and location share one line, so the block stays a single stack -->
+      <div
+        class="text-foreground-alt mt-3 flex flex-wrap items-center gap-x-2.5 gap-y-1 text-lg font-medium"
+      >
+        <span>{site.role}</span>
+        <!-- the dot only makes sense while both parts share a line -->
+        <span class="text-muted-foreground hidden sm:inline" aria-hidden="true"
+          >&middot;</span
+        >
+        <span
+          class="text-muted-foreground inline-flex items-center gap-1.5 text-base"
+        >
+          <MapPin class="size-4" />
+          {site.location}
+        </span>
+      </div>
 
-  <!-- actions and social icons on one row, so the icons read as part of the
-       same band rather than a stray group further down the page -->
-  <div class="mt-8 flex flex-wrap items-center gap-x-5 gap-y-5">
-    <div class="flex items-center gap-3">
-      <Button href={site.resume} target="_blank" rel="noreferrer noopener">
-        <FileText class="size-[18px]" />
-        Resume
-      </Button>
-      <Button href={`mailto:${site.email}`} variant="outline">
-        <Mail class="size-[18px]" />
-        Email me
-      </Button>
+      <p
+        class="text-muted-foreground mt-5 max-w-[52ch] text-[15px] leading-relaxed"
+      >
+        Computer Science student at Azerbaijan Technical University. I build
+        fediverse tools, Linux desktop apps and developer tooling, mostly in
+        TypeScript and Python.
+      </p>
+
+      <!-- actions and social icons on one row, so the icons read as part of the
+           same band rather than a stray group further down the page -->
+      <div class="mt-8 flex flex-wrap items-center gap-x-5 gap-y-5">
+        <div class="flex items-center gap-3">
+          <Button href={site.resume} target="_blank" rel="noreferrer noopener">
+            <FileText class="size-[18px]" />
+            Resume
+          </Button>
+          <Button href={`mailto:${site.email}`} variant="outline">
+            <Mail class="size-[18px]" />
+            Email me
+          </Button>
+        </div>
+
+        <!-- the base class sets h-full, which collapses to nothing inside a
+             centred flex row, so the height and colour are forced here -->
+        <Separator
+          orientation="vertical"
+          class="bg-border-input! hidden data-[orientation=vertical]:h-7! lg:block"
+        />
+
+        <SocialLinks client:load />
+      </div>
     </div>
 
-    <!-- the base class sets h-full, which collapses to nothing inside a centred
-         flex row, so the height and colour are forced here -->
-    <Separator
-      orientation="vertical"
-      class="bg-border-input! hidden data-[orientation=vertical]:h-7! sm:block"
+    <Avatar
+      client:load
+      src="/images/pp.jpg"
+      alt={site.name}
+      fallback={site.short}
+      class="size-28 text-2xl sm:size-40"
     />
-
-    <SocialLinks client:load />
   </div>
 </section>

@@ -29,7 +29,7 @@ export const socials = [
     me: true,
   },
   {
-    label: "omicron blog",
+    label: "Omicron",
     href: "https://omicron.blog/@subhangadirli",
     icon: "omicron",
     me: true,

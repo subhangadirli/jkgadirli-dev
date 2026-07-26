@@ -44,6 +44,11 @@ Its `icon` field maps to a Lucide component in `Projects.astro`.
   client JS.
 - Lucide dropped brand glyphs in v1, so the social links are labelled buttons
   rather than icon buttons.
+- Project logos live in `public/images/logos`. A `mark` logo carries its own
+  transparency and sits straight on the card; a `tile` logo is an opaque square
+  and gets clipped to a rounded icon. A project with no logo falls back to the
+  Lucide icon named in its `icon` field. The Azerbaijan Git Community lockup and
+  the Zed mark were recoloured to white for the dark background.
 
 ## Deploy
 

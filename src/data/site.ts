@@ -40,8 +40,13 @@ export type Project = {
   title: string;
   blurb: string;
   href: string;
-  /** maps to a Lucide component in Projects.astro */
+  /** maps to a Lucide component in Projects.astro, used when there is no logo */
   icon: "rss" | "bot" | "users" | "cloud" | "languages" | "palette";
+  /**
+   * `mark` logos carry their own transparency and sit straight on the card.
+   * `tile` logos are opaque squares, so they get clipped to a rounded icon.
+   */
+  logo?: { src: string; mode: "mark" | "tile" };
   tags: string[];
 };
 
@@ -53,6 +58,7 @@ export const projects: Project[] = [
       "Minimal, modern, self-hostable blogging over ActivityPub, so posts federate into the fediverse instead of sitting on an island.",
     href: "https://github.com/the-jk-labs/omicron",
     icon: "rss",
+    logo: { src: "/images/logos/omicron.png", mode: "mark" },
     tags: ["TypeScript", "ActivityPub", "Self-hosted"],
   },
   {
@@ -69,6 +75,7 @@ export const projects: Project[] = [
       "Browse, upload, download and manage cloud files from the desktop, through a native GTK4 interface.",
     href: "https://github.com/subhangadirli/gazan",
     icon: "cloud",
+    logo: { src: "/images/logos/gazan.svg", mode: "mark" },
     tags: ["Python", "GTK4", "Linux"],
   },
   {
@@ -77,6 +84,7 @@ export const projects: Project[] = [
       "A Model Context Protocol server for Kagi Translate, which puts translation and proofreading in reach of any MCP client.",
     href: "https://github.com/subhangadirli/kagi-translate-mcp",
     icon: "languages",
+    logo: { src: "/images/logos/kagi.png", mode: "tile" },
     tags: ["TypeScript", "MCP", "API"],
   },
   {
@@ -85,6 +93,7 @@ export const projects: Project[] = [
       "The website of the Azerbaijan GitHub Community, built and maintained with the community.",
     href: "https://github.com/Azerbaijan-Git-Community/website",
     icon: "users",
+    logo: { src: "/images/logos/agc-white.png", mode: "mark" },
     tags: ["TypeScript", "Web", "Community"],
   },
   {
@@ -93,6 +102,7 @@ export const projects: Project[] = [
       "Custom file and folder icons for the Zed editor, over 800 of them, ported from the VS Code icon set.",
     href: "https://github.com/subhangadirli/vs-code-plus-icons-for-zed",
     icon: "palette",
+    logo: { src: "/images/logos/zed-white.png", mode: "mark" },
     tags: ["TypeScript", "Zed", "Icons"],
   },
 ];

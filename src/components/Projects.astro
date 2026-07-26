@@ -38,10 +38,25 @@ const icons = {
               rel="noreferrer noopener"
               class="rounded-card border-border-card bg-background-alt shadow-card hover:border-border-input-hover focus-visible:ring-dark focus-visible:ring-offset-background focus-visible:outline-hidden flex h-full flex-col border p-5 transition-colors focus-visible:ring-2 focus-visible:ring-offset-2"
             >
-              <div class="flex items-start justify-between gap-3">
-                <span class="border-dark-10 bg-background rounded-input text-foreground-alt inline-flex size-9 items-center justify-center border">
-                  <Icon class="size-[18px]" />
-                </span>
+              <div class="flex h-9 items-center justify-between gap-3">
+                {project.logo ? (
+                  <img
+                    src={project.logo.src}
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                    class:list={[
+                      "object-contain object-left",
+                      project.logo.mode === "tile"
+                        ? "border-dark-10 rounded-[7px] size-9 border"
+                        : "h-9 w-auto max-w-[9.5rem]",
+                    ]}
+                  />
+                ) : (
+                  <span class="border-dark-10 bg-background rounded-input text-foreground-alt inline-flex size-9 items-center justify-center border">
+                    <Icon class="size-[18px]" />
+                  </span>
+                )}
                 <ArrowUpRight class="text-muted-foreground size-4 shrink-0" />
               </div>
 

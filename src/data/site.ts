@@ -4,7 +4,7 @@ export const site = {
   role: "Full-stack developer & Linux user",
   email: "subhanqedirli@protonmail.com",
   resume: "https://rxresu.me/subhangadirli/subhan-gadirli",
-  gaId: "G-8P62TFLJHY",
+  mastodon: "https://mastodon.social/@subhanqedirli",
   description:
     "Full-stack developer and Linux user. Computer Science student at Azerbaijan Technical University, building operating systems, browsers and web experiences.",
 };
@@ -12,6 +12,7 @@ export const site = {
 export const socials = [
   { label: "GitHub", href: "https://github.com/subhangadirli" },
   { label: "LinkedIn", href: "https://linkedin.com/in/subhangadirli" },
+  { label: "Mastodon", href: "https://mastodon.social/@subhanqedirli" },
   { label: "Instagram", href: "https://instagram.com/subhangadirli" },
 ];
 

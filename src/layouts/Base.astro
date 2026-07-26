@@ -34,6 +34,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:image" content={new URL("/images/pp.jpg", Astro.site)} />
     <meta name="twitter:card" content="summary_large_image" />
 
+    <link rel="me" href={site.mastodon} />
+
     <link
       rel="preload"
       href="/fonts/PublicSans-VariableFont_wght.ttf"
@@ -41,19 +43,6 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       type="font/ttf"
       crossorigin
     />
-
-    <script
-      is:inline
-      async
-      src={`https://www.googletagmanager.com/gtag/js?id=${site.gaId}`}></script>
-    <script is:inline define:vars={{ gaId: site.gaId }}>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", gaId);
-    </script>
   </head>
 
   <body>

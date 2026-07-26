@@ -31,7 +31,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:image" content={new URL("/images/pp.jpg", Astro.site)} />
+    <meta property="og:image" content={new URL("/images/pp.jpeg", Astro.site)} />
     <meta name="twitter:card" content="summary_large_image" />
 
     {socials.filter((s) => s.me).map((s) => <link rel="me" href={s.href} />)}

@@ -19,7 +19,7 @@ npm run preview  # serve the build locally
 src/
   data/site.ts          # all content: bio, projects, skills, education, links
   layouts/Base.astro    # <head>, meta, page shell
-  components/           # Header, Hero, About, Projects, Contact, Footer, SocialLinks
+  components/           # Header, Hero, Activity, About, Projects, Contact, Footer, SocialLinks
   components/ui/        # Bits UI wrappers: Button, Avatar, Separator
   styles/app.css        # Tailwind entry plus the design tokens
 pages/index.astro       # the one page, composed from the components
@@ -49,6 +49,13 @@ Its `icon` field maps to a Lucide component in `Projects.astro`.
 - Social links are icon-only, with the label in a Bits UI tooltip and on
   `aria-label`. Entries flagged `me` in `socials` are also emitted as
   `<link rel="me">` for fediverse verification.
+- The Activity section draws the GitHub contribution graph from
+  `github-contributions-api.jogruber.de`, an unauthenticated mirror of the
+  contributions data. `Activity.astro` fetches a snapshot at build time and
+  embeds it, so the graph is in the static HTML with no JS and no layout shift;
+  the island then refetches on view, which is what keeps it current between
+  deploys. If both the build fetch and the client fetch fail the card says so
+  instead of collapsing. The GitHub handle comes from `site.github`.
 - Project logos live in `public/images/logos`. A `mark` logo carries its own
   transparency and sits straight on the card; a `tile` logo is an opaque square
   and gets clipped to a rounded icon. A project with no logo falls back to the

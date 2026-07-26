@@ -4,6 +4,7 @@ export const site = {
   role: "Full-stack developer & Linux user",
   location: "Baku, Azerbaijan",
   email: "subhanqedirli@protonmail.com",
+  github: "subhangadirli",
   resume: "https://rxresu.me/subhangadirli/subhan-gadirli",
   mastodon: "https://mastodon.social/@subhanqedirli",
   description:

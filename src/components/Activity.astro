@@ -1,0 +1,37 @@
+---
+import ContributionGraph from "./ContributionGraph.svelte";
+import { site } from "../data/site";
+
+/**
+ * A snapshot is fetched at build time so the section renders complete in the
+ * static HTML, with no JS and no layout shift. The island then refetches on
+ * view, which is what keeps the graph current between deploys.
+ */
+type Contributions = {
+  total: Record<string, number>;
+  contributions: { date: string; count: number; level: number }[];
+};
+
+let seed: Contributions | null = null;
+
+try {
+  const res = await fetch(
+    `https://github-contributions-api.jogruber.de/v4/${site.github}?y=last`,
+    { signal: AbortSignal.timeout(10000) },
+  );
+  if (res.ok) seed = await res.json();
+  else console.warn(`[activity] contributions API returned ${res.status}`);
+} catch (err) {
+  console.warn("[activity] could not fetch contributions at build time", err);
+}
+---
+
+<section id="activity" class="border-dark-10 border-t py-16">
+  <h2
+    class="text-muted-foreground mb-8 text-xs font-semibold uppercase tracking-[0.12em]"
+  >
+    Activity
+  </h2>
+
+  <ContributionGraph client:visible user={site.github} seed={seed} />
+</section>

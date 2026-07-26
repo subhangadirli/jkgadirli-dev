@@ -39,11 +39,16 @@ Its `icon` field maps to a Lucide component in `Projects.astro`.
 - Flat surfaces: a border, a small shadow, one step of background lightness.
   No gradients. Radii stay in the 5px to 16px range from the token scale.
 - Interactive components are Svelte islands: `AboutTabs` (`client:visible`),
-  `CopyEmail` (`client:visible`), `Avatar` (`client:load`). Everything else,
+  `CopyEmail` (`client:visible`), `Avatar` and `SocialLinks` (`client:load`).
+  Everything else,
   including the Bits UI `Button` and `Separator`, renders to static HTML with no
   client JS.
-- Lucide dropped brand glyphs in v1, so the social links are labelled buttons
-  rather than icon buttons.
+- Lucide dropped brand glyphs in v1, so the social icons come from Simple Icons
+  as raw paths in `src/components/icons/brands.ts`, drawn with `currentColor`.
+  LinkedIn is from Simple Icons v13, the last version that still shipped it.
+- Social links are icon-only, with the label in a Bits UI tooltip and on
+  `aria-label`. Entries flagged `me` in `socials` are also emitted as
+  `<link rel="me">` for fediverse verification.
 - Project logos live in `public/images/logos`. A `mark` logo carries its own
   transparency and sits straight on the card; a `tile` logo is an opaque square
   and gets clipped to a rounded icon. A project with no logo falls back to the

@@ -10,7 +10,8 @@ export const site = {
     "Full-stack developer and Linux user. Computer Science student at Azerbaijan Technical University, building fediverse tools, Linux desktop apps and developer tooling.",
 };
 
-/** `icon` maps to a Lucide component in SocialLinks.svelte. */
+/** `icon` maps to a brand path in components/icons/brands.ts, or to the local
+ * omicron logo. `me` links are also declared as rel="me" in the document head. */
 export const socials = [
   { label: "GitHub", href: "https://github.com/subhangadirli", icon: "github" },
   {
@@ -22,6 +23,13 @@ export const socials = [
     label: "Mastodon",
     href: "https://mastodon.social/@subhanqedirli",
     icon: "mastodon",
+    me: true,
+  },
+  {
+    label: "omicron blog",
+    href: "https://omicron.blog/@subhangadirli",
+    icon: "omicron",
+    me: true,
   },
   {
     label: "Instagram",

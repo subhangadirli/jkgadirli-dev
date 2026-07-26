@@ -4,7 +4,7 @@ import FileText from "@lucide/svelte/icons/file-text";
 import Mail from "@lucide/svelte/icons/mail";
 import Avatar from "./ui/Avatar.svelte";
 import Button from "./ui/Button.svelte";
-import SocialLinks from "./SocialLinks.astro";
+import SocialLinks from "./SocialLinks.svelte";
 import { site } from "../data/site";
 ---
 
@@ -55,6 +55,6 @@ import { site } from "../data/site";
   </div>
 
   <div class="mt-10">
-    <SocialLinks />
+    <SocialLinks client:load />
   </div>
 </section>

@@ -2,7 +2,7 @@
 import "../styles/app.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import { site } from "../data/site";
+import { site, socials } from "../data/site";
 
 interface Props {
   title?: string;
@@ -34,7 +34,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:image" content={new URL("/images/pp.jpg", Astro.site)} />
     <meta name="twitter:card" content="summary_large_image" />
 
-    <link rel="me" href={site.mastodon} />
+    {socials.filter((s) => s.me).map((s) => <link rel="me" href={s.href} />)}
 
     <link
       rel="preload"

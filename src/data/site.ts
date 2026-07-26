@@ -7,7 +7,7 @@ export const site = {
   resume: "https://rxresu.me/subhangadirli/subhan-gadirli",
   mastodon: "https://mastodon.social/@subhanqedirli",
   description:
-    "Full-stack developer and Linux user. Computer Science student at Azerbaijan Technical University, building operating systems, browsers and web experiences.",
+    "Full-stack developer and Linux user. Computer Science student at Azerbaijan Technical University, building fediverse tools, Linux desktop apps and developer tooling.",
 };
 
 /** `icon` maps to a Lucide component in SocialLinks.svelte. */
@@ -41,42 +41,59 @@ export type Project = {
   blurb: string;
   href: string;
   /** maps to a Lucide component in Projects.astro */
-  icon: "terminal" | "globe" | "layout" | "bot";
+  icon: "rss" | "bot" | "users" | "cloud" | "languages" | "palette";
   tags: string[];
 };
 
+/** the pinned repositories on github.com/subhangadirli */
 export const projects: Project[] = [
   {
-    title: "TuranOS",
+    title: "omicron",
     blurb:
-      "A customized Debian-based operating system with specialized editions for education, cybersecurity, personal and commercial use.",
-    href: "https://www.instagram.com/turanlinux/",
-    icon: "terminal",
-    tags: ["Linux", "Debian", "OS"],
-  },
-  {
-    title: "Firefox One 🦊+",
-    blurb:
-      "A browser with the power of Firefox and the aesthetics of Opera One, a modern, fluid, fully customizable interface.",
-    href: "https://github.com/subhangadirli/FoxOne",
-    icon: "globe",
-    tags: ["Firefox", "CSS", "Theming"],
-  },
-  {
-    title: "ZenTab",
-    blurb:
-      "A focused, minimal browser start page for Firefox, built to cut distraction with a clean, customizable interface.",
-    href: "https://github.com/subhangadirli/ZenTab",
-    icon: "layout",
-    tags: ["JavaScript", "UI", "Productivity"],
+      "Minimal, modern, self-hostable blogging over ActivityPub, so posts federate into the fediverse instead of sitting on an island.",
+    href: "https://github.com/the-jk-labs/omicron",
+    icon: "rss",
+    tags: ["TypeScript", "ActivityPub", "Self-hosted"],
   },
   {
     title: "x-to-mastodon-bot",
     blurb:
-      "An automation bot that mirrors posts from X to Mastodon, keeping both timelines in sync without manual work.",
+      "An X sync bot for Mastodon that mirrors posts across, keeping both timelines aligned without manual work.",
     href: "https://github.com/subhangadirli/x-to-mastodon-bot",
     icon: "bot",
-    tags: ["Python", "Automation", "API"],
+    tags: ["JavaScript", "Automation", "API"],
+  },
+  {
+    title: "gazan",
+    blurb:
+      "Browse, upload, download and manage cloud files from the desktop, through a native GTK4 interface.",
+    href: "https://github.com/subhangadirli/gazan",
+    icon: "cloud",
+    tags: ["Python", "GTK4", "Linux"],
+  },
+  {
+    title: "kagi-translate-mcp",
+    blurb:
+      "A Model Context Protocol server for Kagi Translate, which puts translation and proofreading in reach of any MCP client.",
+    href: "https://github.com/subhangadirli/kagi-translate-mcp",
+    icon: "languages",
+    tags: ["TypeScript", "MCP", "API"],
+  },
+  {
+    title: "Azerbaijan Git Community",
+    blurb:
+      "The website of the Azerbaijan GitHub Community, built and maintained with the community.",
+    href: "https://github.com/Azerbaijan-Git-Community/website",
+    icon: "users",
+    tags: ["TypeScript", "Web", "Community"],
+  },
+  {
+    title: "vs-code-plus-icons-for-zed",
+    blurb:
+      "Custom file and folder icons for the Zed editor, over 800 of them, ported from the VS Code icon set.",
+    href: "https://github.com/subhangadirli/vs-code-plus-icons-for-zed",
+    icon: "palette",
+    tags: ["TypeScript", "Zed", "Icons"],
   },
 ];
 
@@ -84,6 +101,7 @@ export const skills = [
   "HTML",
   "CSS",
   "JavaScript",
+  "TypeScript",
   "Python",
   "Linux",
   "Git",

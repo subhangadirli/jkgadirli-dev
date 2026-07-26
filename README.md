@@ -20,7 +20,7 @@ src/
   data/site.ts          # all content: bio, projects, skills, education, links
   layouts/Base.astro    # <head>, meta, page shell
   components/           # Header, Hero, Activity, About, Projects, Contact, Footer, SocialLinks
-  components/ui/        # Bits UI wrappers: Button, Avatar, Separator
+  components/ui/        # Bits UI wrappers: Button, Separator
   styles/app.css        # Tailwind entry plus the design tokens
 pages/index.astro       # the one page, composed from the components
 public/                 # font, images, robots.txt, sitemap.xml, copied as-is
@@ -39,10 +39,12 @@ Its `icon` field maps to a Lucide component in `Projects.astro`.
 - Flat surfaces: a border, a small shadow, one step of background lightness.
   No gradients. Radii stay in the 5px to 16px range from the token scale.
 - Interactive components are Svelte islands: `AboutTabs` (`client:visible`),
-  `CopyEmail` (`client:visible`), `Avatar` and `SocialLinks` (`client:load`).
-  Everything else,
-  including the Bits UI `Button` and `Separator`, renders to static HTML with no
-  client JS.
+  `CopyEmail` and `ContributionGraph` (`client:visible`), `SocialLinks`
+  (`client:load`). Everything else, including the Bits UI `Button` and
+  `Separator`, renders to static HTML with no client JS.
+- The hero portrait is a plain `<img>` rather than the Bits UI `Avatar`. That
+  component ships the image with `display: none` and reveals it from JS once it
+  has loaded, so the portrait was missing until the island hydrated.
 - Lucide dropped brand glyphs in v1, so the social icons come from Simple Icons
   as raw paths in `src/components/icons/brands.ts`, drawn with `currentColor`.
   LinkedIn is from Simple Icons v13, the last version that still shipped it.

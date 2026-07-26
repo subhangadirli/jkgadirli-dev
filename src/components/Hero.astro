@@ -2,7 +2,6 @@
 import MapPin from "@lucide/svelte/icons/map-pin";
 import FileText from "@lucide/svelte/icons/file-text";
 import Mail from "@lucide/svelte/icons/mail";
-import Avatar from "./ui/Avatar.svelte";
 import Button from "./ui/Button.svelte";
 import Separator from "./ui/Separator.svelte";
 import SocialLinks from "./SocialLinks.svelte";
@@ -72,12 +71,20 @@ import { site } from "../data/site";
       </div>
     </div>
 
-    <Avatar
-      client:load
-      src="/images/pp.jpg"
-      alt={site.name}
-      fallback={site.short}
-      class="size-32 text-2xl sm:size-48"
-    />
+    <!-- a plain image, not the Bits UI Avatar: that one ships the img hidden
+         and reveals it from JS, so the portrait disappeared whenever the island
+         had not hydrated yet -->
+    <div
+      class="border-foreground size-32 shrink-0 rounded-full border p-0.5 sm:size-48"
+    >
+      <img
+        src="/images/pp.jpg"
+        alt={site.name}
+        width="192"
+        height="192"
+        fetchpriority="high"
+        class="size-full rounded-full object-cover"
+      />
+    </div>
   </div>
 </section>

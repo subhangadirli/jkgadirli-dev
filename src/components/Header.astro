@@ -18,9 +18,11 @@ import { nav, site } from "../data/site";
     </a>
 
     <!-- scrolls rather than pushing the page wide, so narrow phones keep the
-         logo and the section headings on the same left edge -->
+         logo and the section headings on the same left edge. While the get in
+         touch button is hidden it also sits against the right gutter, so the
+         bar is not left packed with a growing gap on the right. -->
     <nav
-      class="flex min-w-0 items-center gap-0.5 overflow-x-auto [scrollbar-width:none] sm:gap-1 [&::-webkit-scrollbar]:hidden"
+      class="ml-auto flex min-w-0 items-center gap-0.5 overflow-x-auto [scrollbar-width:none] sm:ml-0 sm:gap-1 [&::-webkit-scrollbar]:hidden"
       aria-label="Sections"
     >
       {

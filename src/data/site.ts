@@ -3,14 +3,14 @@ export const site = {
   /** the browser tab and og:title, kept short so it does not get truncated */
   title: "Subhan Gadirli",
   short: "JK",
-  role: "Full-stack developer & Linux user",
+  role: "Full-stack developer & Linux enthusiast",
   location: "Baku, Azerbaijan",
   email: "subhanqedirli@protonmail.com",
   github: "subhangadirli",
   resume: "https://rxresu.me/subhangadirli/subhan-gadirli",
   mastodon: "https://mastodon.social/@subhanqedirli",
   description:
-    "Full-stack developer and Linux user. Computer Science student at Azerbaijan Technical University, building fediverse tools, Linux desktop apps and developer tooling.",
+    "Full-stack developer and Linux enthusiast. Computer Science student at Azerbaijan Technical University, building fediverse tools, Linux desktop apps and developer tooling.",
 };
 
 /** `icon` maps to a brand path in components/icons/brands.ts, or to the local

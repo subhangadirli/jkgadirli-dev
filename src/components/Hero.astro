@@ -4,57 +4,63 @@ import FileText from "@lucide/svelte/icons/file-text";
 import Mail from "@lucide/svelte/icons/mail";
 import Avatar from "./ui/Avatar.svelte";
 import Button from "./ui/Button.svelte";
+import Separator from "./ui/Separator.svelte";
 import SocialLinks from "./SocialLinks.svelte";
 import { site } from "../data/site";
 ---
 
-<section class="pb-16 pt-20 sm:pb-20 sm:pt-28">
-  <div class="mb-8 flex items-center gap-4">
-    <Avatar
-      client:load
-      src="/images/pp.jpg"
-      alt={site.name}
-      fallback={site.short}
-    />
-
-    <span
-      class="border-dark-10 bg-background-alt text-muted-foreground rounded-input inline-flex items-center gap-1.5 border px-2.5 py-1 text-xs font-medium"
-    >
-      <MapPin class="size-3.5" />
-      {site.location}
-    </span>
-  </div>
+<section class="pb-14 pt-14 sm:pb-16 sm:pt-20">
+  <Avatar client:load src="/images/pp.jpg" alt={site.name} fallback={site.short} />
 
   <h1
-    class="text-4xl font-semibold leading-[1.05] tracking-[-0.03em] sm:text-5xl"
+    class="mt-6 text-4xl font-semibold leading-[1.05] tracking-[-0.03em] sm:text-5xl"
   >
     {site.name}
   </h1>
 
-  <p class="text-foreground-alt mt-4 text-lg font-medium">
-    {site.role}
-  </p>
-
-  <p
-    class="text-muted-foreground mt-4 max-w-[54ch] text-[15px] leading-relaxed"
+  <!-- role and location share one line so the header block stays a single
+       left-aligned stack instead of a badge floating beside the avatar -->
+  <div
+    class="text-foreground-alt mt-3 flex flex-wrap items-center gap-x-2.5 gap-y-1 text-lg font-medium"
   >
+    <span>{site.role}</span>
+    <!-- the dot only makes sense while both parts share a line -->
+    <span class="text-muted-foreground hidden sm:inline" aria-hidden="true"
+      >&middot;</span
+    >
+    <span class="text-muted-foreground inline-flex items-center gap-1.5 text-base">
+      <MapPin class="size-4" />
+      {site.location}
+    </span>
+  </div>
+
+  <p class="text-muted-foreground mt-5 max-w-[54ch] text-[15px] leading-relaxed">
     Computer Science student at Azerbaijan Technical University. I build
     fediverse tools, Linux desktop apps and developer tooling, mostly in
     TypeScript and Python.
   </p>
 
-  <div class="mt-8 flex flex-wrap items-center gap-3">
-    <Button href={site.resume} target="_blank" rel="noreferrer noopener">
-      <FileText class="size-[18px]" />
-      Resume
-    </Button>
-    <Button href={`mailto:${site.email}`} variant="outline">
-      <Mail class="size-[18px]" />
-      Email me
-    </Button>
-  </div>
+  <!-- actions and social icons on one row, so the icons read as part of the
+       same band rather than a stray group further down the page -->
+  <div class="mt-8 flex flex-wrap items-center gap-x-5 gap-y-5">
+    <div class="flex items-center gap-3">
+      <Button href={site.resume} target="_blank" rel="noreferrer noopener">
+        <FileText class="size-[18px]" />
+        Resume
+      </Button>
+      <Button href={`mailto:${site.email}`} variant="outline">
+        <Mail class="size-[18px]" />
+        Email me
+      </Button>
+    </div>
 
-  <div class="mt-10">
+    <!-- the base class sets h-full, which collapses to nothing inside a centred
+         flex row, so the height and colour are forced here -->
+    <Separator
+      orientation="vertical"
+      class="bg-border-input! hidden data-[orientation=vertical]:h-7! sm:block"
+    />
+
     <SocialLinks client:load />
   </div>
 </section>

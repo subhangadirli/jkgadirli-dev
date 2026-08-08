@@ -39,9 +39,14 @@ Its `icon` field maps to a Lucide component in `Projects.astro`.
 - Flat surfaces: a border, a small shadow, one step of background lightness.
   No gradients. Radii stay in the 5px to 16px range from the token scale.
 - Interactive components are Svelte islands: `AboutTabs` (`client:visible`),
-  `CopyEmail` and `ContributionGraph` (`client:visible`), `SocialLinks`
-  (`client:load`). Everything else, including the Bits UI `Button` and
-  `Separator`, renders to static HTML with no client JS.
+  `CopyEmail` and `ContributionGraph` (`client:visible`), `SocialLinks` and
+  `MobileNav` (`client:load`). Everything else, including the Bits UI `Button`
+  and `Separator`, renders to static HTML with no client JS.
+- The header nav collapses into a hamburger below `sm`. The links do not fit
+  beside the wordmark on a phone, and scrolling them horizontally left the last
+  one visibly cut off at the right edge, so `MobileNav.svelte` moves them into a
+  panel fixed under the bar, along with the "Get in touch" button that is also
+  hidden at that width.
 - The hero portrait is a plain `<img>` rather than the Bits UI `Avatar`. That
   component ships the image with `display: none` and reveals it from JS once it
   has loaded, so the portrait was missing until the island hydrated.

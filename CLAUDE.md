@@ -18,6 +18,11 @@ Verification here is visual. Build, serve with `pnpm preview`, and look at the
 page. Prefer `preview` over `dev` when capturing screenshots, because the dev
 server injects the Astro toolbar over the bottom of the viewport.
 
+Layout bugs here do not show up without a real browser. A jsdom test of the
+mobile nav passed every interaction while the scrim was `height: 0` in Chromium,
+because jsdom does no layout. If a change touches positioning, drive it in a
+headless browser and read the bounding boxes, do not infer from the markup.
+
 pnpm is the only package manager here. `pnpm-lock.yaml` is the committed
 lockfile, `packageManager` in `package.json` pins the version, and
 `pnpm-workspace.yaml` carries `minimumReleaseAge`, `saveExact` and the esbuild
@@ -104,10 +109,26 @@ The horizontal gutter is `px-4 sm:px-6` and lives in three places that must stay
 in sync: `main` in `Base.astro`, the header inner div, and the footer inner div.
 If they diverge, the header wordmark stops lining up with the section headings.
 
-The header nav takes `ml-auto` only while the "Get in touch" button is hidden
-below `sm`, since that button otherwise carries the auto margin. The nav also
-scrolls internally rather than widening the page, so adding a nav item cannot
-reintroduce horizontal overflow on narrow phones.
+The header has two navs. Below `sm` the inline links and the "Get in touch"
+button are both hidden and `MobileNav.svelte` (`client:load`, the one island
+that must respond to the first tap) renders a hamburger toggle plus a panel
+fixed under the bar. From `sm` up the inline nav returns and the button carries
+the `ml-auto`. Adding a nav item is a `site.ts` edit and needs nothing else, the
+inline nav still scrolls internally rather than widening the page and the panel
+is a column.
+
+The header carries `backdrop-blur-md`, and a backdrop-filter makes an element
+the containing block for its `fixed` descendants. The mobile overlay therefore
+resolved against the 64px header box rather than the viewport, which collapsed
+the scrim to zero height and silently broke tap to dismiss. `MobileNav` moves
+both nodes to `document.body` with a small `portal` attachment. Anything fixed
+and full height that starts life inside the header needs the same treatment.
+
+The panel also locks scrolling while open, and it does it inline on `<html>`,
+because that is where the scrollbar is and an inline style is what outranks the
+`overflow-y-scroll` rule in `app.css`. It closes itself when the viewport
+crosses `sm`, since the panel is `sm:hidden` and an open menu would otherwise
+leave the lock on with no way to release it.
 
 ## Copy conventions
 

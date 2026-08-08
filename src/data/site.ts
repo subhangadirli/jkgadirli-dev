@@ -49,6 +49,7 @@ export const socials = [
 
 export const nav = [
   { label: "About", href: "#about" },
+  { label: "Journey", href: "#journey" },
   { label: "Projects", href: "#projects" },
   { label: "Blog", href: "#blog" },
   { label: "Contact", href: "#contact" },
@@ -160,6 +161,89 @@ export const skillGroups = [
   },
 ];
 
+export type JourneyEntry = {
+  title: string;
+  /** rendered first, in full contrast, ahead of the muted meta segments */
+  lead?: string;
+  /** joined with a thin divider, so keep each segment short */
+  meta: string[];
+  /** the fallback drawn in the node when there is no logo, maps to a Lucide
+   * component in Journey.astro */
+  icon: "award" | "education" | "code" | "users";
+  /** same modes as Project.logo: `mark` carries its own transparency and sits
+   * straight in the node, `tile` is an opaque square and gets clipped */
+  logo?: { src: string; mode: "mark" | "tile" };
+  /** entries are listed newest first, and a year marker is drawn on each change */
+  year: number;
+};
+
+/**
+ * LinkedIn has no public API or feed for a profile, so this is maintained by
+ * hand. Keep it newest first, the year markers are derived from the order.
+ */
+export const journey: JourneyEntry[] = [
+  {
+    title: "Founder and Full-Stack Developer",
+    lead: "Omicron Blogging",
+    meta: ["Self-employed", "Jun 2026 to present"],
+    icon: "code",
+    logo: { src: "/images/logos/omicron.png", mode: "mark" },
+    year: 2026,
+  },
+  {
+    title: "Community Lead",
+    lead: "Azerbaijan GitHub Community",
+    meta: ["Baku", "Jan 2026 to present"],
+    icon: "users",
+    logo: { src: "/images/logos/agc-white.png", mode: "mark" },
+    year: 2026,
+  },
+  {
+    title: "Full-Stack Development",
+    lead: "Qwasar Silicon Valley",
+    meta: ["Course", "Oct 2025 to Jul 2026"],
+    icon: "education",
+    logo: { src: "/images/logos/qwasar-white.svg", mode: "mark" },
+    year: 2025,
+  },
+  {
+    title: "Member of Corporate Relations",
+    lead: "ESTIEM",
+    meta: ["Baku", "Mar 2025 to Feb 2026"],
+    icon: "users",
+    logo: { src: "/images/logos/estiem.png", mode: "mark" },
+    year: 2025,
+  },
+  {
+    title: "Introduction to Entrepreneurship",
+    lead: "SABAH.HUB",
+    meta: ["Certification", "Feb 2025"],
+    icon: "award",
+    /** the site only publishes the square mark as a 32px favicon, so this is
+     * upscaled from it, with the rounded corners filled back in */
+    logo: { src: "/images/logos/sabahhub.png", mode: "tile" },
+    year: 2025,
+  },
+  {
+    title: "BSc Computer Science",
+    lead: "Azerbaijan Technical University",
+    meta: ["Bachelor's degree", "Sep 2024 to present"],
+    icon: "education",
+    logo: { src: "/images/logos/aztu-white.png", mode: "mark" },
+    year: 2024,
+  },
+  {
+    title: "Linux Developer",
+    lead: "Kiber Təhlükəsizlik Platforması",
+    meta: ["Turan Linux", "May 2020 to Jun 2024"],
+    icon: "code",
+    /** an opaque navy shield on white, so it is clipped as a tile rather than
+     * sat straight on the dark background */
+    logo: { src: "/images/logos/kiberplatforma.png", mode: "tile" },
+    year: 2020,
+  },
+];
+
 export const education = [
   {
     title: "BSc Computer Science",
@@ -167,8 +251,8 @@ export const education = [
     period: "2024 to 2028",
   },
   {
-    title: "Full-Stack Course",
-    org: "Peerstack Academy",
+    title: "Full-Stack Development",
+    org: "Qwasar Silicon Valley",
     period: "2025 to 2026",
   },
 ];

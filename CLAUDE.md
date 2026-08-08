@@ -92,8 +92,13 @@ silently produced invisible separators more than once.
 ### Responsive conventions
 
 Stacked layouts centre on phones and switch to left aligned at the breakpoint
-where the layout goes side by side, usually `md`. The Hero, Contact card, and
-Footer all follow this.
+where the layout goes side by side, usually `md`. The Hero and Footer follow
+this.
+
+The Contact card and the Journey timeline are the exceptions: both stay centred
+at every width. Contact centres its own text and button pair inside the card,
+Journey centres the rail and its entries as one block while the entries stay
+left aligned against the rail.
 
 The horizontal gutter is `px-4 sm:px-6` and lives in three places that must stay
 in sync: `main` in `Base.astro`, the header inner div, and the footer inner div.

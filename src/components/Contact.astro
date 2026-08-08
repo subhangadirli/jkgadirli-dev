@@ -13,14 +13,14 @@ import { site } from "../data/site";
   </h2>
 
   <div
-    class="rounded-card border-border-card bg-background-alt shadow-card border p-6 text-center sm:p-8 md:text-left"
+    class="rounded-card border-border-card bg-background-alt shadow-card border p-6 text-center sm:p-8"
   >
     <p class="text-xl font-semibold tracking-[-0.02em]">
       Have something in mind?
     </p>
 
     <p
-      class="text-muted-foreground mx-auto mt-3 max-w-[52ch] text-[15px] leading-relaxed md:mx-0"
+      class="text-muted-foreground mx-auto mt-3 max-w-[52ch] text-[15px] leading-relaxed"
     >
       Open to freelance work, collaborations and open-source contributions. The
       fastest way to reach me is email.
@@ -33,9 +33,9 @@ import { site } from "../data/site";
     </p>
 
     <!-- full width while stacked, so the two buttons read as one block instead
-         of two ragged edges -->
+         of two ragged edges, then centred as a pair once they sit side by side -->
     <div
-      class="mt-6 flex flex-col items-stretch gap-3 md:flex-row md:flex-wrap md:items-center"
+      class="mt-6 flex flex-col items-stretch gap-3 md:flex-row md:flex-wrap md:items-center md:justify-center"
     >
       <Button href={`mailto:${site.email}`} class="w-full md:w-auto">
         <Mail class="size-[18px]" />

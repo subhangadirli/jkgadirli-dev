@@ -5,22 +5,24 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Commands
 
 ```sh
-npm run dev      # dev server at localhost:4321
-npm run build    # static build to dist/
-npm run preview  # serve the built output, no dev toolbar
+pnpm dev      # dev server at localhost:4321
+pnpm build    # static build to dist/
+pnpm preview  # serve the built output, no dev toolbar
 ```
 
 There is no test suite, linter, formatter, or typecheck script. `astro check` is
-not installed and prompts to add `@astrojs/check` if invoked. `npm run build` is
+not installed and prompts to add `@astrojs/check` if invoked. `pnpm build` is
 the only automated gate, so it is the thing to run after every change.
 
-Verification here is visual. Build, serve with `npm run preview`, and look at the
+Verification here is visual. Build, serve with `pnpm preview`, and look at the
 page. Prefer `preview` over `dev` when capturing screenshots, because the dev
 server injects the Astro toolbar over the bottom of the viewport.
 
-Both `package-lock.json` and `pnpm-lock.yaml` are committed. The scripts and the
-README assume npm; `pnpm-workspace.yaml` only carries `minimumReleaseAge` and
-`saveExact` for anyone using pnpm.
+pnpm is the only package manager here. `pnpm-lock.yaml` is the committed
+lockfile, `packageManager` in `package.json` pins the version, and
+`pnpm-workspace.yaml` carries `minimumReleaseAge`, `saveExact` and the esbuild
+build allowance. Do not run npm or yarn in this repo, and do not reintroduce
+`package-lock.json`.
 
 ## Architecture
 
@@ -110,7 +112,7 @@ no co-author or generated-with trailers.
 ## Deploy
 
 Vercel, static output. `vercel.json` sets `cleanUrls`. Build command
-`npm run build`, output directory `dist`.
+`pnpm build`, output directory `dist`.
 
 `README.md` carries the design rationale in more depth, including the logo mode
 conventions and why the hero portrait is a plain `<img>` rather than the Bits UI

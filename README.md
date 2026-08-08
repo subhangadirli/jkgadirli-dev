@@ -7,10 +7,10 @@ Personal portfolio. Single page, dark, flat. Built with [Astro](https://astro.bu
 ## Commands
 
 ```sh
-npm install      # install deps
-npm run dev      # dev server at localhost:4321
-npm run build    # static build to dist/
-npm run preview  # serve the build locally
+pnpm install      # install deps
+pnpm dev          # dev server at localhost:4321
+pnpm build        # static build to dist/
+pnpm preview      # serve the build locally
 ```
 
 ## Structure
@@ -67,4 +67,4 @@ Its `icon` field maps to a Lucide component in `Projects.astro`.
 ## Deploy
 
 Vercel, static output. `vercel.json` sets `cleanUrls`. Framework preset Astro,
-build command `npm run build`, output directory `dist`.
+build command `pnpm build`, output directory `dist`.

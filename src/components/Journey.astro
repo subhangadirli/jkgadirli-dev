@@ -1,0 +1,101 @@
+---
+import Award from "@lucide/svelte/icons/award";
+import GraduationCap from "@lucide/svelte/icons/graduation-cap";
+import Code from "@lucide/svelte/icons/code";
+import Users from "@lucide/svelte/icons/users";
+import { journey } from "../data/site";
+
+const icons = {
+  award: Award,
+  education: GraduationCap,
+  code: Code,
+  users: Users,
+};
+
+/** the marker is drawn above the first entry of each year, so the rail reads as
+ * a descending timeline rather than a flat list */
+const years = journey.map((entry, index) =>
+  index === 0 || journey[index - 1].year !== entry.year ? entry.year : null,
+);
+---
+
+<section id="journey" class="border-dark-10 border-t py-16">
+  <h2
+    class="text-muted-foreground mb-8 text-xs font-semibold uppercase tracking-[0.12em]"
+  >
+    Journey
+  </h2>
+
+  <!-- the rail and the text centre on the page as one block, so the group sits
+       in the middle while the entries stay left aligned against the rail.
+       `max-w-full` lets it shrink back to the gutter on narrow phones. -->
+  <ol class="relative mx-auto flex w-fit max-w-full flex-col gap-7">
+    <!-- the rail runs behind the nodes, from the centre of the first to the
+         centre of the last, so it never overshoots either end -->
+    <span
+      aria-hidden="true"
+      class="bg-dark-10 absolute bottom-[26px] left-[26px] top-[26px] w-px -translate-x-1/2"
+    ></span>
+
+    {
+      journey.map((entry, index) => {
+        const Icon = icons[entry.icon];
+        const year = years[index];
+
+        return (
+          <>
+            {year !== null && (
+              <li class="relative flex items-center gap-5">
+                <span class="border-dark-10 bg-background rounded-input text-muted-foreground z-10 inline-flex size-13 shrink-0 items-center justify-center border text-xs font-semibold tabular-nums">
+                  {year}
+                </span>
+              </li>
+            )}
+
+            <li class="relative flex items-center gap-5">
+              <span class="border-dark-10 bg-background rounded-input text-foreground-alt z-10 inline-flex size-13 shrink-0 items-center justify-center overflow-hidden border">
+                {entry.logo ? (
+                  <img
+                    src={entry.logo.src}
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                    class:list={[
+                      "object-contain",
+                      entry.logo.mode === "tile"
+                        ? "size-full"
+                        : "max-h-10 max-w-10",
+                    ]}
+                  />
+                ) : (
+                  <Icon class="size-6" />
+                )}
+              </span>
+
+              <div class="min-w-0">
+                <h3 class="text-base font-semibold tracking-[-0.01em]">
+                  {entry.title}
+                </h3>
+                <p class="text-muted-foreground mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
+                  {entry.lead && (
+                    <span class="text-foreground font-medium">{entry.lead}</span>
+                  )}
+                  {entry.meta.map((item, meta) => (
+                    <>
+                      {(meta > 0 || entry.lead) && (
+                        <span aria-hidden="true" class="text-dark-10">
+                          /
+                        </span>
+                      )}
+                      <span>{item}</span>
+                    </>
+                  ))}
+                </p>
+              </div>
+            </li>
+          </>
+        );
+      })
+    }
+  </ol>
+</section>

@@ -7,7 +7,10 @@ export const site = {
   location: "Baku, Azerbaijan",
   email: "subhanqedirli@protonmail.com",
   github: "subhangadirli",
-  resume:
+  /** internal preview page, which embeds the PDF and offers a download button */
+  resume: "/resume",
+  /** direct download URL, always the newest release thanks to the latest redirect */
+  resumePdf:
     "https://github.com/subhangadirli/resume/releases/latest/download/Subhan-Gadirli-Resume.pdf",
   mastodon: "https://mastodon.social/@subhanqedirli",
   description:

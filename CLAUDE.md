@@ -55,10 +55,12 @@ but they diverge at runtime, and the reason is CORS:
   `Access-Control-Allow-Origin`. The build embeds a snapshot as `seed`, and the
   island refetches on view, so the graph stays current between deploys. If the
   refetch fails it silently keeps the seed.
-- **Blog posts** (`Blog.astro` plus `src/data/blog.ts`) come from the Omicron RSS
-  feed, which sends no CORS header. A browser fetch would be blocked, so this
-  section is build time only and ships zero JS. New posts appear on the next
-  deploy.
+- **Blog posts** (`Blog.astro` plus `BlogPosts.svelte` and `src/data/blog.ts`)
+  come from the Omicron RSS feed, which sends
+  `Access-Control-Allow-Origin` (see `FEED_HEADERS` in the Omicron
+  frontend). The build embeds a snapshot as `seed`, and the island refetches
+  on view, so new posts appear without a redeploy. If the refetch fails it
+  silently keeps the seed.
 
 Before adding any client-side fetch, confirm the endpoint actually sends
 `Access-Control-Allow-Origin`. Both paths degrade to a readable fallback rather
@@ -72,8 +74,8 @@ the "Read the full article" link Omicron appends to every item.
 
 Static HTML is the default. Only add a `client:*` directive when something
 genuinely needs to run in the browser. Current islands: `SocialLinks`
-(`client:load`, for tooltips), `CopyEmail` and `ContributionGraph`
-(`client:visible`). The Bits UI `Button` and `Separator` wrappers render to
+(`client:load`, for tooltips), `CopyEmail`, `ContributionGraph` and
+`BlogPosts` (`client:visible`). The Bits UI `Button` and `Separator` wrappers render to
 static HTML with no client JS.
 
 Known issue: `CopyEmail` copies the address correctly but its label never flips

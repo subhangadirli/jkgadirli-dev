@@ -7,7 +7,8 @@ export const site = {
   location: "Baku, Azerbaijan",
   email: "subhanqedirli@protonmail.com",
   github: "subhangadirli",
-  resume: "https://rxresu.me/subhangadirli/subhan-gadirli",
+  resume:
+    "https://github.com/subhangadirli/resume/releases/latest/download/Subhan-Gadirli-Resume.pdf",
   mastodon: "https://mastodon.social/@subhanqedirli",
   description:
     "Full-stack developer and Linux enthusiast. Computer Science student at Azerbaijan Technical University, building fediverse tools, Linux desktop apps and developer tooling.",

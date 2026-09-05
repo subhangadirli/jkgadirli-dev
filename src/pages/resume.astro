@@ -1,64 +1,246 @@
 ---
-import Base from "../layouts/Base.astro";
-import Button from "../components/ui/Button.svelte";
+import { fetchResume } from "../data/resume";
 import { site } from "../data/site";
 
-/** Google fetches the PDF server side, which sidesteps the
- *  Content-Disposition: attachment header GitHub sends on release assets.
- *  The encoded URL stays stable, latest always resolves to the newest file. */
-const viewer = `https://drive.google.com/viewerng/viewer?embedded=true&url=${encodeURIComponent(site.resumePdf)}`;
+/**
+ * Standalone dark page, deliberately outside the site layout: the resume
+ * paper carries its own print stylesheet, inlined at build time from the
+ * resume repo, so the site header and footer stay out of the way.
+ */
+const { body, css } = await fetchResume();
 ---
 
-<Base
-  title={`Resume - ${site.title}`}
-  description={`Resume of ${site.name}, ${site.role}.`}
-/>
-  <section class="pb-14 pt-14 sm:pb-16 sm:pt-20">
-    <div
-      class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"
-    >
-      <div>
-        <h1
-          class="text-4xl font-semibold leading-[1.05] tracking-[-0.03em] sm:text-5xl"
-        >
-          Resume
-        </h1>
-        <p class="text-muted-foreground mt-3 text-[15px] leading-relaxed">
-          Preview below, always the newest release. Grab a copy for keeps if
-          you need one.
-        </p>
-      </div>
-      <div class="flex shrink-0 items-center gap-3">
-        <Button
-          href={site.resumePdf}
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          Download PDF
-        </Button>
-      </div>
-    </div>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Resume - Subhan Gadirli</title>
+    <meta
+      name="description"
+      content="Resume of Subhan Gadirli, Fullstack Developer."
+    />
+    <link rel="canonical" href="https://jkgadirli.dev/resume" />
+    <link rel="icon" type="image/png" href="/images/icon.png" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#000000" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body.page {
+        background: #000;
+        color: #f5f5f5;
+        font-family:
+          system-ui, -apple-system, "Segoe UI", sans-serif;
+        min-height: 100vh;
+        -webkit-font-smoothing: antialiased;
+      }
+      .page-head {
+        text-align: center;
+        padding: 40px 20px 28px;
+      }
+      .page-head h1 {
+        font-size: 28px;
+        font-weight: 650;
+        letter-spacing: -0.01em;
+      }
+      .page-head p {
+        margin-top: 6px;
+        color: #a3a3a3;
+        font-size: 15px;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 18px;
+        background: #e9e9e9;
+        color: #111;
+        font-weight: 600;
+        font-size: 15px;
+        line-height: 1;
+        padding: 12px 20px;
+        border-radius: 6px;
+        text-decoration: none;
+      }
+      .btn:hover {
+        background: #fff;
+      }
+      .paper-wrap {
+        padding: 0 20px 72px;
+      }
+      .paper {
+        background: #fff;
+        color: #111;
+        max-width: 880px;
+        margin: 0 auto;
+        padding: 52px 60px;
+      }
+      .fab {
+        position: fixed;
+        right: 24px;
+        bottom: 24px;
+        width: 52px;
+        height: 52px;
+        border-radius: 9999px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #141414;
+        border: 1px solid #2e2e2e;
+        color: #fff;
+        text-decoration: none;
+      }
+      .fab:hover {
+        background: #1f1f1f;
+      }
+      .fallback {
+        max-width: 560px;
+        margin: 0 auto;
+        padding: 0 20px 72px;
+        text-align: center;
+        color: #a3a3a3;
+        font-size: 15px;
+        line-height: 1.6;
+      }
+      .fallback .row {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        margin-top: 20px;
+        flex-wrap: wrap;
+      }
+      .btn-ghost {
+        background: transparent;
+        color: #f5f5f5;
+        border: 1px solid #2e2e2e;
+        margin-top: 0;
+      }
+      .btn-ghost:hover {
+        background: #141414;
+      }
+      @media (max-width: 640px) {
+        .paper-wrap {
+          padding: 0 12px 56px;
+        }
+        .paper {
+          padding: 32px 24px;
+        }
+        .fab {
+          right: 16px;
+          bottom: 16px;
+        }
+      }
+      @media print {
+        body.page {
+          background: #fff;
+        }
+        .page-head,
+        .fab,
+        .fallback {
+          display: none;
+        }
+        .paper-wrap {
+          padding: 0;
+        }
+        .paper {
+          max-width: none;
+          padding: 0;
+        }
+      }
+    </style>
+    {css && <style set:html={css} />}
+  </head>
 
-    <div
-      class="rounded-card border-muted bg-background-alt shadow-card mt-8 overflow-hidden border"
-    >
-      <iframe
-        src={viewer}
-        title="Resume preview"
-        class="h-[80vh] w-full"
-        loading="lazy"
-      ></iframe>
-    </div>
-
-    <p class="text-muted-foreground mt-4 text-sm">
-      Preview not loading? Open the
+  <body class="page">
+    <header class="page-head">
+      <h1>Subhan Gadirli</h1>
+      <p>Fullstack Developer</p>
       <a
+        class="btn"
         href={site.resumePdf}
         target="_blank"
         rel="noreferrer noopener"
-        class="underline underline-offset-4 hover:text-foreground"
-        >PDF directly</a
-      >.
-    </p>
-  </section>
-</Base>
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+          <polyline points="7 10 12 15 17 10" />
+          <line x1="12" x2="12" y1="15" y2="3" />
+        </svg>
+        Download PDF
+      </a>
+    </header>
+
+    {
+      body ? (
+        <main class="paper-wrap">
+          <div class="paper" set:html={body} />
+        </main>
+      ) : (
+        <main class="fallback">
+          <p>
+            The live preview is unavailable right now, but the newest PDF is
+            still one click away.
+          </p>
+          <div class="row">
+            <a
+              class="btn"
+              href={site.resumePdf}
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              Download PDF
+            </a>
+            <a
+              class="btn btn-ghost"
+              href={site.resumePdf}
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              Open directly
+            </a>
+          </div>
+        </main>
+      )
+    }
+
+    <a
+      class="fab"
+      href={site.resumePdf}
+      target="_blank"
+      rel="noreferrer noopener"
+      aria-label="Download resume PDF"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+        <polyline points="7 10 12 15 17 10" />
+        <line x1="12" x2="12" y1="15" y2="3" />
+      </svg>
+    </a>
+  </body>
+</html>

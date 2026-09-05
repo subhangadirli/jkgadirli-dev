@@ -11,7 +11,7 @@ export const site = {
   resume: "/resume",
   /** direct download URL, always the newest release thanks to the latest redirect */
   resumePdf:
-    "https://github.com/subhangadirli/resume/releases/latest/download/Subhan-Gadirli-Resume.pdf",
+    "https://github.com/subhangadirli/resume/releases/latest/download/Subhan_Gadirli.pdf",
   mastodon: "https://mastodon.social/@subhanqedirli",
   description:
     "Full-stack developer and Linux enthusiast. Computer Science student at Azerbaijan Technical University, building fediverse tools, Linux desktop apps and developer tooling.",

@@ -64,7 +64,7 @@ export type Project = {
   blurb: string;
   href: string;
   /** maps to a Lucide component in Projects.astro, used when there is no logo */
-  icon: "rss" | "bot" | "users" | "cloud" | "languages" | "palette";
+  icon: "rss" | "bot" | "users" | "cloud" | "languages" | "palette" | "code";
   /**
    * `mark` logos carry their own transparency and sit straight on the card.
    * `tile` logos are opaque squares, so they get clipped to a rounded icon.
@@ -75,6 +75,14 @@ export type Project = {
 
 /** the pinned repositories on github.com/subhangadirli */
 export const projects: Project[] = [
+  {
+    title: "plombir",
+    blurb:
+      "A ridiculously fast static site generator for Crystal, compiling Markdown and layouts into a single native binary.",
+    href: "https://github.com/subhangadirli/plombir",
+    icon: "code",
+    tags: ["Crystal", "Static Sites", "CLI"],
+  },
   {
     title: "Community Website",
     blurb:

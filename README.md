@@ -38,10 +38,10 @@ Its `icon` field maps to a Lucide component in `Projects.astro`.
   `dark:` variants in the docs class strings working as written.
 - Flat surfaces: a border, a small shadow, one step of background lightness.
   No gradients. Radii stay in the 5px to 16px range from the token scale.
-- Interactive components are Svelte islands: `AboutTabs` (`client:visible`),
-  `CopyEmail` and `ContributionGraph` (`client:visible`), `SocialLinks` and
-  `MobileNav` (`client:load`). Everything else, including the Bits UI `Button`
-  and `Separator`, renders to static HTML with no client JS.
+- Interactive components are Svelte islands: `CopyEmail` and `BlogPosts`
+  (`client:visible`), `ContributionGraph`, `SocialLinks` and `MobileNav`
+  (`client:load`). Everything else, including the Bits UI `Button` and
+  `Separator`, renders to static HTML with no client JS.
 - The header nav collapses into a hamburger below `sm`. The links do not fit
   beside the wordmark on a phone, and scrolling them horizontally left the last
   one visibly cut off at the right edge, so `MobileNav.svelte` moves them into a
@@ -58,11 +58,11 @@ Its `icon` field maps to a Lucide component in `Projects.astro`.
   `<link rel="me">` for fediverse verification.
 - The Activity section draws the GitHub contribution graph from
   `github-contributions-api.jogruber.de`, an unauthenticated mirror of the
-  contributions data. `Activity.astro` fetches a snapshot at build time and
-  embeds it, so the graph is in the static HTML with no JS and no layout shift;
-  the island then refetches on view, which is what keeps it current between
-  deploys. If both the build fetch and the client fetch fail the card says so
-  instead of collapsing. The GitHub handle comes from `site.github`.
+  contributions data. The graph fetches fresh data in the browser on every page
+  load with HTTP caching disabled, rather than showing a potentially stale
+  build-time snapshot. It shows a loading state until data arrives and an
+  unavailable state if the request fails. The GitHub handle comes from
+  `site.github`.
 - Project logos live in `public/images/logos`. A `mark` logo carries its own
   transparency and sits straight on the card; a `tile` logo is an opaque square
   and gets clipped to a rounded icon. A project with no logo falls back to the

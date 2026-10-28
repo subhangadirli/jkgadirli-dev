@@ -4,14 +4,9 @@
   type Day = { date: string; count: number; level: number };
   type Data = { total: Record<string, number>; contributions: Day[] };
 
-  let {
-    user,
-    seed = null,
-  }: { user: string; seed?: Data | null } = $props();
+  let { user }: { user: string } = $props();
 
-  /** the build embeds a snapshot as `seed`, so the graph is present without JS
-   *  and stays readable if the API is unreachable when the page is opened */
-  let data = $state<Data | null>(seed);
+  let data = $state<Data | null>(null);
   let failed = $state(false);
   let scroller: HTMLDivElement;
 
@@ -19,7 +14,11 @@
 
   onMount(async () => {
     try {
-      const res = await fetch(endpoint, { signal: AbortSignal.timeout(8000) });
+      const res = await fetch(endpoint, {
+        signal: AbortSignal.timeout(8000),
+        cache: "no-store",
+        headers: { "Cache-Control": "no-cache" },
+      });
       if (!res.ok) throw new Error(String(res.status));
       data = await res.json();
     } catch {

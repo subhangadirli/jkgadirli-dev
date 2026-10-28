@@ -47,14 +47,14 @@ must match the `id` on the corresponding `<section>`.
 
 ### External data: two feeds, two different strategies
 
-Both are fetched at build time so the section is complete in the static HTML,
-but they diverge at runtime, and the reason is CORS:
+Both use CORS-enabled endpoints, but they differ in whether data is embedded at
+build time:
 
 - **Contributions** (`Activity.astro` plus `ContributionGraph.svelte`) come from
   `github-contributions-api.jogruber.de`, which sends
-  `Access-Control-Allow-Origin`. The build embeds a snapshot as `seed`, and the
-  island refetches on view, so the graph stays current between deploys. If the
-  refetch fails it silently keeps the seed.
+  `Access-Control-Allow-Origin`. The graph loads on page load with HTTP caching
+  disabled, so refreshes request current data instead of showing a build-time
+  snapshot. It shows loading and unavailable states while fetching or on error.
 - **Blog posts** (`Blog.astro` plus `BlogPosts.svelte` and `src/data/blog.ts`)
   come from the Omicron RSS feed, which sends
   `Access-Control-Allow-Origin` (see `FEED_HEADERS` in the Omicron
@@ -73,10 +73,10 @@ the "Read the full article" link Omicron appends to every item.
 ### Islands are the exception
 
 Static HTML is the default. Only add a `client:*` directive when something
-genuinely needs to run in the browser. Current islands: `SocialLinks`
-(`client:load`, for tooltips), `CopyEmail`, `ContributionGraph` and
-`BlogPosts` (`client:visible`). The Bits UI `Button` and `Separator` wrappers render to
-static HTML with no client JS.
+genuinely needs to run in the browser. Current islands: `SocialLinks`,
+`MobileNav` and `ContributionGraph` (`client:load`), and `CopyEmail` and
+`BlogPosts` (`client:visible`). The Bits UI `Button` and `Separator` wrappers
+render to static HTML with no client JS.
 
 Known issue: `CopyEmail` copies the address correctly but its label never flips
 to the "Copied" confirmation state. This predates the current code and is

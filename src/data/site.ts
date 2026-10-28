@@ -81,6 +81,7 @@ export const projects: Project[] = [
       "A ridiculously fast static site generator for Crystal, compiling Markdown and layouts into a single native binary.",
     href: "https://github.com/subhangadirli/plombir",
     icon: "code",
+    logo: { src: "/images/logos/plombir.svg", mode: "mark" },
     tags: ["Crystal", "Static Sites", "CLI"],
   },
   {

@@ -38,8 +38,8 @@ Its `icon` field maps to a Lucide component in `Projects.astro`.
   `dark:` variants in the docs class strings working as written.
 - Flat surfaces: a border, a small shadow, one step of background lightness.
   No gradients. Radii stay in the 5px to 16px range from the token scale.
-- Interactive components are Svelte islands: `CopyEmail` and `BlogPosts`
-  (`client:visible`), `ContributionGraph`, `SocialLinks` and `MobileNav`
+- Interactive components are Svelte islands: `CopyEmail` (`client:visible`),
+  `BlogPosts`, `ContributionGraph`, `SocialLinks` and `MobileNav`
   (`client:load`). Everything else, including the Bits UI `Button` and
   `Separator`, renders to static HTML with no client JS.
 - The header nav collapses into a hamburger below `sm`. The links do not fit
@@ -63,6 +63,10 @@ Its `icon` field maps to a Lucide component in `Projects.astro`.
   build-time snapshot. It shows a loading state until data arrives and an
   unavailable state if the request fails. The GitHub handle comes from
   `site.github`.
+- The Blog section fetches the Omicron RSS feed in the browser on every page
+  load, with browser caching disabled and a unique query parameter to avoid
+  intermediary caches. It shows loading and error states instead of a
+  build-time snapshot. The feed and profile URLs come from `src/data/blog.ts`.
 - Project logos live in `public/images/logos`. A `mark` logo carries its own
   transparency and sits straight on the card; a `tile` logo is an opaque square
   and gets clipped to a rounded icon. A project with no logo falls back to the

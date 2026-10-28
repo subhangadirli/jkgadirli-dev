@@ -6,22 +6,27 @@
   let {
     feedUrl,
     profileUrl,
-    seed = [],
-  }: { feedUrl: string; profileUrl: string; seed?: Post[] } = $props();
+  }: { feedUrl: string; profileUrl: string } = $props();
 
-  /** the build embeds a snapshot as `seed`, so the section is complete
-   *  without JS. The island refetches on view, which is what picks up new
-   *  posts between deploys, and silently keeps the seed on failure. */
-  let posts = $state<Post[]>(seed);
+  let posts = $state<Post[]>([]);
+  let loading = $state(true);
+  let failed = $state(false);
 
   onMount(async () => {
     try {
-      const res = await fetch(feedUrl, { signal: AbortSignal.timeout(8000) });
+      const url = new URL(feedUrl);
+      url.searchParams.set("_", Date.now().toString());
+
+      const res = await fetch(url, {
+        signal: AbortSignal.timeout(8000),
+        cache: "no-store",
+      });
       if (!res.ok) throw new Error(String(res.status));
-      const fresh = parseFeed(await res.text());
-      if (fresh.length > 0) posts = fresh;
+      posts = parseFeed(await res.text());
     } catch {
-      /* keep the seed */
+      failed = true;
+    } finally {
+      loading = false;
     }
   });
 </script>
@@ -73,7 +78,13 @@
     rel="noreferrer noopener"
     class="rounded-card border-border-card bg-background-alt shadow-card hover:border-border-input-hover text-muted-foreground flex items-center justify-between gap-3 border p-5 text-sm transition-colors"
   >
-    Posts are on the blog
+    {#if loading}
+      Loading latest posts…
+    {:else if failed}
+      Latest posts unavailable
+    {:else}
+      No recent posts
+    {/if}
     <ArrowUpRight class="size-4 shrink-0" />
   </a>
 {/if}

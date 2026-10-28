@@ -58,9 +58,10 @@ build time:
 - **Blog posts** (`Blog.astro` plus `BlogPosts.svelte` and `src/data/blog.ts`)
   come from the Omicron RSS feed, which sends
   `Access-Control-Allow-Origin` (see `FEED_HEADERS` in the Omicron
-  frontend). The build embeds a snapshot as `seed`, and the island refetches
-  on view, so new posts appear without a redeploy. If the refetch fails it
-  silently keeps the seed.
+  frontend). The island fetches on page load with browser caching disabled and
+  a unique query parameter to avoid intermediary caches, so the section does not
+  rely on a build-time snapshot. It shows loading and unavailable states while
+  fetching or on error.
 
 Before adding any client-side fetch, confirm the endpoint actually sends
 `Access-Control-Allow-Origin`. Both paths degrade to a readable fallback rather
@@ -74,8 +75,8 @@ the "Read the full article" link Omicron appends to every item.
 
 Static HTML is the default. Only add a `client:*` directive when something
 genuinely needs to run in the browser. Current islands: `SocialLinks`,
-`MobileNav` and `ContributionGraph` (`client:load`), and `CopyEmail` and
-`BlogPosts` (`client:visible`). The Bits UI `Button` and `Separator` wrappers
+`MobileNav`, `ContributionGraph` and `BlogPosts` (`client:load`), and
+`CopyEmail` (`client:visible`). The Bits UI `Button` and `Separator` wrappers
 render to static HTML with no client JS.
 
 Known issue: `CopyEmail` copies the address correctly but its label never flips

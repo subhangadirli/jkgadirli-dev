@@ -1,23 +1,6 @@
 ---
 import BlogPosts from "./BlogPosts.svelte";
-import { feedUrl, parseFeed, profileUrl } from "../data/blog";
-import type { Post } from "../data/blog";
-
-/**
- * A snapshot is fetched at build time so the section renders complete in the
- * static HTML, with no JS and no layout shift. The island then refetches on
- * view, which is what picks up new posts between deploys. This needs the
- * feed to allow cross-origin reads, see FEED_HEADERS in the Omicron frontend.
- */
-let seed: Post[] = [];
-
-try {
-  const res = await fetch(feedUrl, { signal: AbortSignal.timeout(10000) });
-  if (res.ok) seed = parseFeed(await res.text());
-  else console.warn(`[blog] feed returned ${res.status}`);
-} catch (err) {
-  console.warn("[blog] could not fetch the feed at build time", err);
-}
+import { feedUrl, profileUrl } from "../data/blog";
 ---
 
 <section id="blog" class="border-dark-10 border-t py-16">
@@ -39,9 +22,8 @@ try {
   </div>
 
   <BlogPosts
-    client:visible
+    client:load
     feedUrl={feedUrl}
     profileUrl={profileUrl}
-    seed={seed}
   />
 </section>

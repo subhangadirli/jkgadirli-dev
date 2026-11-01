@@ -21,11 +21,10 @@
   font-display: swap;
 }
 
-/* used only for the JK wordmark in the header; Vercel ships the serif
-   family as an optical-size variable fixed at weight 400 */
+/* used only for the JK wordmark in the header */
 @font-face {
-  font-family: "Geist Serif";
-  src: url("/fonts/GeistSerifVF.woff2") format("woff2");
+  font-family: "DM Serif Display";
+  src: url("/fonts/DMSerifDisplay-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -90,7 +89,7 @@
   --animate-fade-out: fade-out 0.15s ease;
 
   --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Geist Serif", ui-serif, Georgia, serif;
+  --font-serif: "DM Serif Display", ui-serif, Georgia, serif;
   --font-mono: "Geist Mono", ui-monospace, monospace;
 }
 

@@ -204,7 +204,7 @@ export const journey: JourneyEntry[] = [
     year: 2026,
   },
   {
-    title: "Fullstack Engineer",
+    title: "Founder and Fullstack Engineer",
     lead: "Omicron Blogging",
     meta: ["Self-employed", "Jun 2026 to present"],
     icon: "code",

@@ -196,7 +196,7 @@ export type JourneyEntry = {
  */
 export const journey: JourneyEntry[] = [
   {
-    title: "Full Stack Engineer",
+    title: "Fullstack Engineer",
     lead: "Tiefer",
     meta: ["Part-time", "Oct 2026 to present", "Remote"],
     icon: "code",
@@ -204,7 +204,7 @@ export const journey: JourneyEntry[] = [
     year: 2026,
   },
   {
-    title: "Founder and Full-Stack Developer",
+    title: "Fullstack Engineer",
     lead: "Omicron Blogging",
     meta: ["Self-employed", "Jun 2026 to present"],
     icon: "code",
